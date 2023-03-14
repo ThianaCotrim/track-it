@@ -7,12 +7,14 @@ import bolinha from "../images/bolinha.png"
 export default function Habitos () {
     return (
         <Container>
+
        <ContainerTopo>
         <NavBar>
             <img src={trackit} alt={trackit}/>
             <img src={perfil} alt={perfil}/>
         </NavBar>
        </ContainerTopo>
+       
         <Principal>
         < Cima>
         <Meus>
@@ -22,6 +24,35 @@ export default function Habitos () {
                 <p>+</p>
             </Quadrado>
         </Cima>
+
+        <Informacoes escondido>
+            < Nome>
+                 <input type="text" placeholder="nome do hábito"/>
+            </Nome>
+            <Dias>
+                <button>D</button>
+                <button>S</button>
+                <button>T</button>
+                <button>Q</button>
+                <button>Q</button>
+                <button>S</button>
+                <button>S</button>
+            </Dias>
+
+            <CancelarESalvar>
+                <Cancelar>
+                    Cancelar
+                </Cancelar>
+                <Salvar>
+                    <p>Salvar</p>
+                </Salvar>
+            </CancelarESalvar>
+
+        </Informacoes>
+
+
+
+
         <Texto>
         Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!
         </Texto>
@@ -83,7 +114,7 @@ const Principal= styled.div`
     min-height: 85vh;
     background-color: #E5E5E5;
     display: flex;
-    
+    align-items:center;
     text-align: center;
     margin-top: 70px;
     flex-direction: column;
@@ -173,21 +204,21 @@ const Meus = styled.div `
 `
 
 const Quadrado = styled.div`
-        width: 40px;
-        height: 35px;
-        margin-right: 20px;
-        background-color: #52B6FF;
-        border-radius: 4.63636px;
-        display: flex;
-        text-align: center;
-        justify-content: center;
-        align-items: center;
+    width: 40px;
+    height: 35px;
+    margin-right: 20px;
+    background-color: #52B6FF;
+    border-radius: 4.63636px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
 
-        p {
-            font-size: 28px;
-            color: #FFFFFF;
-            font-weight: bold;
-        }
+    p {
+    font-size: 28px;
+    color: #FFFFFF;
+    font-weight: bold;
+    }
 `
 
 const Texto = styled.div`
@@ -199,4 +230,94 @@ const Texto = styled.div`
     margin-top: 30px;
     padding: 10px;
 `
+
+const Informacoes = styled.div`
+    background-color: #FFFFFF;
+    width: 340px;
+    height: 180px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    
+`
+
+
+const Nome = styled.div`
+
+    margin-top:18px;
+
+    input {
+    width: 303px;
+    height: 45px;
+    border: 1px solid #D5D5D5;
+    border-radius: 5px;
+    padding-left: 5px;
+
+    ::placeholder {
+    font-family: 'Lexend Deca', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    color: #DBDBDB;
+    font-style: normal;
+  }
+    }
+`
+
+const Dias = styled.div`
+    width: 235px;
+    height: 31px;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 15px;
+    margin-top: 8px;
+
+    button {
+        border: 1px solid #D4D4D4;
+        background-color: #FFFFFF;
+        border-radius: 5px;
+        width: 30px;
+        height: 30px;
+        font-family: 'Lexend Deca', sans-serif;
+        font-weight: 400;
+        font-size: 19px;
+        color: #DBDBDB;
+}
+`
+
+const CancelarESalvar = styled.div`
+    width: 170px;
+    height: 35px;
+    margin-left: 150px;
+    margin-top: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+
+`
+
+const Cancelar = styled.div`
+    font-family: 'Lexend Deca', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: #52B6FF;
+`
+
+const Salvar = styled.div`
+    background-color: #52B6FF;
+    width: 84px;
+    height: 35px;
+    border-radius: 4.63636px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    p {
+    font-family: 'Lexend Deca', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: #FFFFFF;
+    }
+`
+
 
