@@ -29,15 +29,11 @@ return (
 const Imagem = styled.div `
     margin-top: 68px;
     margin-bottom: 33px;
-
 `
-
-
-
 
 const Email = styled.div`
 
-    margin-bottom:15px;
+    margin-bottom:8px;
 
     input {
     width: 303px;
@@ -59,7 +55,7 @@ const Email = styled.div`
 
 const Senha = styled.div `
 
-    margin-bottom:15px;
+    margin-bottom:8px;
     
 
     input {
@@ -103,7 +99,6 @@ const Botao = styled.div`
     border: none;
     outline: none;
     }
-
 `
 
 const Texto = styled.div`
