@@ -14,7 +14,17 @@ export default function Habitos () {
         </NavBar>
        </ContainerTopo>
         <Principal>
-      
+        < Cima>
+        <Meus>
+        Meus Hábitos
+        </Meus>
+            <Quadrado>
+                <p>+</p>
+            </Quadrado>
+        </Cima>
+        <Texto>
+        Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!
+        </Texto>
        </Principal>
        <ContainerLow>
         <Low>
@@ -22,8 +32,6 @@ export default function Habitos () {
                 Hábitos
             </Habits>
             <img src={bolinha} alt={bolinha}/>
-           
-            
             <Historic>
                 Histórico
             </Historic>
@@ -75,9 +83,11 @@ const Principal= styled.div`
     min-height: 85vh;
     background-color: #E5E5E5;
     display: flex;
-    justify-content: center;
+    
     text-align: center;
     margin-top: 70px;
+    flex-direction: column;
+   
 `
 
 const ContainerLow = styled.div`
@@ -142,3 +152,51 @@ const Historic = styled.div`
     font-style: normal;
     margin-right: 31px;
 `
+
+const Cima = styled.div`
+    display: flex;
+    height: 100px;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    
+`
+
+const Meus = styled.div `
+
+    font-family: 'Lexend Deca', sans-serif;
+    font-weight: 400;
+    font-size: 23px;
+    color: #126BA5;
+    margin-left: 20px;
+
+`
+
+const Quadrado = styled.div`
+        width: 40px;
+        height: 35px;
+        margin-right: 20px;
+        background-color: #52B6FF;
+        border-radius: 4.63636px;
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+
+        p {
+            font-size: 28px;
+            color: #FFFFFF;
+            font-weight: bold;
+        }
+`
+
+const Texto = styled.div`
+    font-family: 'Lexend Deca', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 23px;
+    color: #666666;
+    margin-top: 30px;
+    padding: 10px;
+`
+
