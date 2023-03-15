@@ -26,13 +26,14 @@ export default function Login ({setFotoPerfil}) {
         console.log(body)
         promise.then(res => navigate("/hoje") (setFotoPerfil(res.data.image)))
         promise.catch(err => alert(err.response.data.message))
+        setDisable(!disable)
     }
 
-    if (email.length === undefined && password.length === undefined){
-        return (
-            setDisable(!disable)
-        )
-    }
+    // if (email.length === undefined && password.length === undefined){
+    //     return (
+    //         setDisable(!disable)
+    //     )
+    // }
         
 return (
    <Container>

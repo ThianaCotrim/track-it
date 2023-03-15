@@ -11,6 +11,7 @@ export default function Cadastro () {
     const [password, setPassword] = useState([])
     const [name, setName] = useState ([])
     const [image, setImage] = useState([])
+    const [disable, setDisable] = useState(false)
     
 
     const navigate = useNavigate()
@@ -25,6 +26,8 @@ export default function Cadastro () {
 
         promise.then(res => navigate("/"))
         promise.catch(err => alert(err.response.data.message))
+        setDisable(!disable)
+        
     }
 
 
@@ -36,16 +39,16 @@ return (
    </Imagem>
    <form onSubmit={cadastrar}>
    < Email >
-    <input  data-test="email-input" type="email" placeholder="email"required value={email} onChange={e => setEmail(e.target.value)}/>
+    <input disabled={disable} data-test="email-input" type="email" placeholder="email"required value={email} onChange={e => setEmail(e.target.value)}/>
     </Email>
     < Senha >
-    <input   data-test="password-input" type="password" placeholder="senha"required value={password} onChange={e => setPassword(e.target.value)}/>
+    <input disabled={disable} data-test="password-input" type="password" placeholder="senha"required value={password} onChange={e => setPassword(e.target.value)}/>
     </Senha>
     < Nome>
-    <input data-test="user-name-input" type="text" placeholder="nome"required value={name} onChange={e => setName(e.target.value)}/>
+    <input disabled={disable} data-test="user-name-input" type="text" placeholder="nome"required value={name} onChange={e => setName(e.target.value)}/>
     </Nome>
     < Foto>
-    <input data-test="user-image-input" type="url" placeholder="foto" required value={image} onChange={e => setImage(e.target.value)}/>
+    <input disabled={disable} data-test="user-image-input" type="url" placeholder="foto" required value={image} onChange={e => setImage(e.target.value)}/>
     </Foto>
     < Botao >
     <button data-test="signup-btn" type="submit" >Cadastrar </button>

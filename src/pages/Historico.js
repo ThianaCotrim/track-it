@@ -34,19 +34,19 @@ export default function Historico ({fotoPerfil}) {
 
         </Principal>
         <ContainerLow>
-         <Low>
-         <Link to="/habitos" style={{ textDecoration: 'none' }}>
+         <Low data-test="menu">
+         <Link data-test="habit-link" to="/habitos" style={{ textDecoration: 'none' }}>
             <Habits>
                 Hábitos
             </Habits>
             </Link>
-            <Link to="/hoje">
+            <Link data-test="today-link" to="/hoje">
            <Div>
             <img src={bolinha} alt={bolinha}/>
             <Day>Hoje</Day>
             </Div>
            </Link>
-           <Link to="/historico" style={{ textDecoration: 'none' }}>
+           <Link data-test="history-link"to="/historico" style={{ textDecoration: 'none' }}>
             <Historic>
                 Histórico
             </Historic>
