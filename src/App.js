@@ -3,6 +3,7 @@ import Cadastro from "./pages/Cadastro"
 import Habitos from "./pages/Habitos"
 import Hoje from "./pages/Hoje"
 import React from "react";
+import Historico from "./pages/Historico"
 
 
 function App() {
@@ -11,7 +12,8 @@ function App() {
        {/* <Login /> */}
        {/* <Cadastro /> */}
        {/* <Habitos/> */}
-       < Hoje />
+       {/* < Hoje /> */}
+       < Historico />
        </>
 
   )
