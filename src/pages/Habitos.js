@@ -2,7 +2,7 @@ import styled from "styled-components"
 import trackit from "../images/trackit.png"
 import perfil from "../images/perfil.png"
 import bolinha from "../images/bolinha.png"
-// import vector from "../images/vector.png"
+import lixeirinha from "../images/lixeirinha.png"
 
 export default function Habitos () {
     return (
@@ -24,8 +24,7 @@ export default function Habitos () {
                 <p>+</p>
             </Quadrado>
         </Cima>
-
-        <Informacoes escondido>
+        <Informacoes>
             < Nome>
                  <input type="text" placeholder="nome do hábito"/>
             </Nome>
@@ -38,7 +37,6 @@ export default function Habitos () {
                 <button>S</button>
                 <button>S</button>
             </Dias>
-
             <CancelarESalvar>
                 <Cancelar>
                     Cancelar
@@ -47,11 +45,60 @@ export default function Habitos () {
                     <p>Salvar</p>
                 </Salvar>
             </CancelarESalvar>
-
         </Informacoes>
+        <Tarefas>
+        <Tarefa>
+        <p>
+            Ler 1 capítulo de um livro
+        </p>
+        <Dias>
+                <button>D</button>
+                <button>S</button>
+                <button>T</button>
+                <button>Q</button>
+                <button>Q</button>
+                <button>S</button>
+                <button>S</button>
+            </Dias>
+        </Tarefa>
+        <img src={lixeirinha} alt={lixeirinha}/>
+        </Tarefas>
 
+        <Tarefas>
+        <Tarefa>
+        <p>
+            Ler 1 capítulo de um livro
+        </p>
+        <Dias>
+                <button>D</button>
+                <button>S</button>
+                <button>T</button>
+                <button>Q</button>
+                <button>Q</button>
+                <button>S</button>
+                <button>S</button>
+            </Dias>
+        </Tarefa>
+        <img src={lixeirinha} alt={lixeirinha}/>
+        </Tarefas>
 
-
+        <Tarefas>
+        <Tarefa>
+        <p>
+            Ler 1 capítulo de um livro
+        </p>
+        <Dias>
+                <button>D</button>
+                <button>S</button>
+                <button>T</button>
+                <button>Q</button>
+                <button>Q</button>
+                <button>S</button>
+                <button>S</button>
+            </Dias>
+        </Tarefa>
+        <img src={lixeirinha} alt={lixeirinha}/>
+        </Tarefas>
 
         <Texto>
         Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!
@@ -67,9 +114,6 @@ export default function Habitos () {
                 Histórico
             </Historic>
         </Low>
-        {/* <Teste >
-            <img src={vector} alt={vector}/>
-            </Teste> */}
        </ContainerLow> 
        </Container>
 
@@ -147,23 +191,9 @@ const Low = styled.div`
     img {
         margin-bottom: 60px;
         position: relative;
-        
-   
     }
 `
 
-// const Teste = styled.div`
-
-//     img {
-//         position:absolute;
-//         z-index: 2;
-//         margin-bottom: 5px;
-//         margin-left:5px;
-        
-        
-//     }
-
-// `
 
 const Habits = styled.div`
     font-family: 'Lexend Deca', sans-serif;
@@ -172,7 +202,6 @@ const Habits = styled.div`
     color: #52B6FF;
     font-style: normal;
     margin-left: 36px;
-
 `
 
 const Historic = styled.div`
@@ -190,7 +219,6 @@ const Cima = styled.div`
     width: 100%;
     justify-content: space-between;
     align-items: center;
-    
 `
 
 const Meus = styled.div `
@@ -200,7 +228,6 @@ const Meus = styled.div `
     font-size: 23px;
     color: #126BA5;
     margin-left: 20px;
-
 `
 
 const Quadrado = styled.div`
@@ -238,9 +265,8 @@ const Informacoes = styled.div`
     border-radius: 5px;
     display: flex;
     flex-direction: column;
-    
+    display: none;
 `
-
 
 const Nome = styled.div`
 
@@ -252,6 +278,10 @@ const Nome = styled.div`
     border: 1px solid #D5D5D5;
     border-radius: 5px;
     padding-left: 5px;
+    font-family: 'Lexend Deca', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    color: #666666;
 
     ::placeholder {
     font-family: 'Lexend Deca', sans-serif;
@@ -292,8 +322,6 @@ const CancelarESalvar = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-
 `
 
 const Cancelar = styled.div`
@@ -318,6 +346,36 @@ const Salvar = styled.div`
     font-size: 16px;
     color: #FFFFFF;
     }
+`
+
+const Tarefas = styled.div`
+    background-color: #FFFFFF;
+    width: 340px;
+    height: 92px;
+    border-radius: 5px;
+    display: flex;
+    margin-bottom: 10px;
+
+    img{
+        width: 13px;
+        height: 15px;
+        margin-top: 10px;
+    }
+
+    p{
+    width: 280px;
+    font-family: 'Lexend Deca', sans-serif;
+    font-weight: 400;
+    font-size: 20px;  
+    color: #666666;
+    margin-top: 13px;
+    margin-right: 35px;
+    margin-bottom: 13px;
+    }
+`
+
+const Tarefa = styled.div`
+
 `
 
 
