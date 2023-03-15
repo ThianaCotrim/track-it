@@ -4,8 +4,21 @@ import perfil from "../images/perfil.png"
 import bolinha from "../images/bolinha.png"
 import lixeirinha from "../images/lixeirinha.png"
 import { Link } from "react-router-dom"
+import { useState } from "react"
 
 export default function Habitos ({fotoPerfil}) {
+
+    const [cadastrar, setCadastrar] = useState("display: none")
+    const [selecionado, setSelecionado] = useState("#FFFFFF")
+
+    function cadastrarTarefa () {
+        setCadastrar("")
+    }
+
+    function selecionar () {
+        setSelecionado("#CFCFCF")
+    }
+
     return (
         <Container>
 
@@ -26,22 +39,26 @@ export default function Habitos ({fotoPerfil}) {
         <Meus>
         Meus Hábitos
         </Meus>
-            <Quadrado>
+            <Quadrado onClick={cadastrarTarefa}>
                 <p>+</p>
             </Quadrado>
         </Cima>
-        <Informacoes>
+
+
+
+
+        <Informacoes cadastrar={cadastrar}>
             < Nome>
                  <input type="text" placeholder="nome do hábito"/>
             </Nome>
-            <Dias>
-                <button>D</button>
-                <button>S</button>
-                <button>T</button>
-                <button>Q</button>
-                <button>Q</button>
-                <button>S</button>
-                <button>S</button>
+            <Dias selecionado={selecionado}>
+                <button  onClick={selecionar}>D</button>
+                <button selecionado={selecionado} onClick={selecionar}>S</button>
+                <button onClick={selecionar}>T</button>
+                <button onClick={selecionar}>Q</button>
+                <button onClick={selecionar}>Q</button>
+                <button onClick={selecionar}>S</button>
+                <button onClick={selecionar}>S</button>
             </Dias>
             <CancelarESalvar>
                 <Cancelar>
@@ -52,7 +69,14 @@ export default function Habitos ({fotoPerfil}) {
                 </Salvar>
             </CancelarESalvar>
         </Informacoes>
-        <Tarefas>
+
+
+
+
+
+
+
+        <Tarefas >
         <Tarefa>
         <p>
             Ler 1 capítulo de um livro
@@ -282,7 +306,8 @@ const Informacoes = styled.div`
     border-radius: 5px;
     display: flex;
     flex-direction: column;
-    display: none;
+    display: ${({cadastrar}) => cadastrar ? "none" : ""};
+   
 `
 
 const Nome = styled.div`
