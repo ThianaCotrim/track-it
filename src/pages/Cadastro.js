@@ -23,6 +23,8 @@ export default function Cadastro () {
 
         promise.then(res => navigate("/"))
         promise.catch(err => alert(err.response.data.message))
+
+    
     }
 return (
    <Container>
@@ -31,22 +33,22 @@ return (
    </Imagem>
    <form onSubmit={cadastrar}>
    < Email >
-    <input type="email" placeholder="email"required value={email} onChange={e => setEmail(e.target.value)}/>
+    <input data-test="email-input" type="email" placeholder="email"required value={email} onChange={e => setEmail(e.target.value)}/>
     </Email>
     < Senha >
-    <input type="password" placeholder="senha"required value={password} onChange={e => setPassword(e.target.value)}/>
+    <input data-test="password-input" type="password" placeholder="senha"required value={password} onChange={e => setPassword(e.target.value)}/>
     </Senha>
     < Nome>
-    <input type="text" placeholder="nome"required value={name} onChange={e => setName(e.target.value)}/>
+    <input data-test="user-name-input" type="text" placeholder="nome"required value={name} onChange={e => setName(e.target.value)}/>
     </Nome>
     < Foto>
-    <input type="url" placeholder="foto" required value={image} onChange={e => setImage(e.target.value)}/>
+    <input data-test="user-image-input" type="url" placeholder="foto" required value={image} onChange={e => setImage(e.target.value)}/>
     </Foto>
     < Botao >
-    <button type="submit" >Cadastrar </button>
+    <button data-test="signup-btn" type="submit" >Cadastrar </button>
     </Botao>
     </form>
-    <Link to="/">
+    <Link data-test="login-link" to="/">
     <Texto>
     Já tem uma conta? Faça login!
     </Texto>

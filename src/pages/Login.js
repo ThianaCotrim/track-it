@@ -1,13 +1,18 @@
-import { useState } from "react"
+import {useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import styled from "styled-components"
 import fotoprincipal from "../images/group 8.png"
 import axios from "axios"
 
-export default function Login () {
+
+
+export default function Login ({setFotoPerfil}) {
 
     const [email, setEmail] = useState ("")
     const [password, setPassword] = useState("")
+
+
+    
     const navigate = useNavigate()
 
     function entrar (e) {
@@ -17,7 +22,7 @@ export default function Login () {
         const url = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login"
         const promise = axios.post(url, body)
 
-        promise.then(res => navigate("/hoje"))
+        promise.then(res => navigate("/hoje") (setFotoPerfil(res.data.image)))
         promise.catch(err => alert(err.response.data.message))
         
        
@@ -29,18 +34,18 @@ return (
    </Imagem>
    <form onSubmit={entrar}>
     < Email >
-    <input type="email" placeholder="email" required value={email} onChange={e => setEmail(e.target.value)}/>
+    <input data-test="email-input" type="email" placeholder="email" required value={email} onChange={e => setEmail(e.target.value)}/>
     </Email>
     < Senha >
-    <input type="password" placeholder="senha" required value={password} onChange={e => setPassword(e.target.value)}/>
+    <input data-test="password-input" type="password" placeholder="senha" required value={password} onChange={e => setPassword(e.target.value)}/>
     </Senha>
     < Botao >
     
-    <button type="submit" >Entrar</button>
+    <button data-test="login-btn" type="submit" >Entrar</button>
    
     </Botao>
     </form>
-    <Link to="/cadastro">
+    <Link data-test="signup-link" to="/cadastro">
     <Texto>
     Não tem uma conta? Cadastre-se!
     </Texto>

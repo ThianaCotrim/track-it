@@ -4,7 +4,7 @@ import perfil from "../images/perfil.png"
 import bolinha from "../images/bolinha.png"
 import { Link } from "react-router-dom"
 
-export default function Historico () {
+export default function Historico ({fotoPerfil}) {
     return (
         <Container>
 
@@ -13,7 +13,9 @@ export default function Historico () {
          <Link to="/">
             <img src={trackit} alt={trackit}/>
             </Link>
-             <img src={perfil} alt={perfil}/>
+            <Imagem>
+            <img src={fotoPerfil} alt={perfil}/>
+            </Imagem>
          </NavBar>
         </ContainerTopo>
         
@@ -192,3 +194,12 @@ const Day = styled.div`
     
 
 `
+
+const Imagem = styled.div`
+ border-radius: 98.5px;
+ img {
+    border-radius: 98.5px;
+    width: 51px;
+    height: 51px;
+ }
+ `

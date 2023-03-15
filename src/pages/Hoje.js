@@ -5,7 +5,9 @@ import bolinha from "../images/bolinha.png"
 import check from "../images/check.png"
 import { Link } from "react-router-dom"
 
-export default function Hoje () {
+
+export default function Hoje ({fotoPerfil}) {
+
     return (
         <Container>
 
@@ -14,7 +16,10 @@ export default function Hoje () {
          <Link to="/">
             <img src={trackit} alt={trackit}/>
             </Link>
-             <img src={perfil} alt={perfil}/>
+            <Imagem>
+            <img src={fotoPerfil} alt={perfil}/>
+            </Imagem>
+             
          </NavBar>
         </ContainerTopo>
         
@@ -131,6 +136,7 @@ const NavBar = styled.div`
     img {
     margin-left: 18px;
     margin-right: 18px;
+ 
     }
 `
 
@@ -286,5 +292,14 @@ const Day = styled.div`
   font-size: 18px;
     
 
+`
+
+const Imagem = styled.div`
+ border-radius: 98.5px;
+ img {
+    border-radius: 98.5px;
+    width: 51px;
+    height: 51px;
+ }
 `
 

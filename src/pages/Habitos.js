@@ -5,7 +5,7 @@ import bolinha from "../images/bolinha.png"
 import lixeirinha from "../images/lixeirinha.png"
 import { Link } from "react-router-dom"
 
-export default function Habitos () {
+export default function Habitos ({fotoPerfil}) {
     return (
         <Container>
 
@@ -15,7 +15,9 @@ export default function Habitos () {
             <img src={trackit} alt={trackit}/>
             </Link>
             
-            <img src={perfil} alt={perfil}/>
+            <Imagem>
+            <img src={fotoPerfil} alt={perfil}/>
+            </Imagem>
         </NavBar>
        </ContainerTopo>
        
@@ -409,5 +411,13 @@ const Day = styled.div`
     
 
 `
+
+const Imagem = styled.div`
+ border-radius: 98.5px;
+ img {
+    border-radius: 98.5px;
+    width: 51px;
+    height: 51px;
+ }`
 
 
