@@ -6,10 +6,12 @@ import fotoprincipal from "../images/group 8.png"
 
 export default function Cadastro () {
 
-    const [email, setEmail] = useState ("")
-    const [password, setPassword] = useState("")
-    const [name, setName] = useState ("")
-    const [image, setImage] = useState("")
+
+    const [email, setEmail] = useState ([])
+    const [password, setPassword] = useState([])
+    const [name, setName] = useState ([])
+    const [image, setImage] = useState([])
+    
 
     const navigate = useNavigate()
 
@@ -23,9 +25,10 @@ export default function Cadastro () {
 
         promise.then(res => navigate("/"))
         promise.catch(err => alert(err.response.data.message))
+    }
+
 
     
-    }
 return (
    <Container>
     < Imagem>
@@ -33,10 +36,10 @@ return (
    </Imagem>
    <form onSubmit={cadastrar}>
    < Email >
-    <input data-test="email-input" type="email" placeholder="email"required value={email} onChange={e => setEmail(e.target.value)}/>
+    <input  data-test="email-input" type="email" placeholder="email"required value={email} onChange={e => setEmail(e.target.value)}/>
     </Email>
     < Senha >
-    <input data-test="password-input" type="password" placeholder="senha"required value={password} onChange={e => setPassword(e.target.value)}/>
+    <input   data-test="password-input" type="password" placeholder="senha"required value={password} onChange={e => setPassword(e.target.value)}/>
     </Senha>
     < Nome>
     <input data-test="user-name-input" type="text" placeholder="nome"required value={name} onChange={e => setName(e.target.value)}/>

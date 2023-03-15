@@ -8,25 +8,32 @@ import axios from "axios"
 
 export default function Login ({setFotoPerfil}) {
 
-    const [email, setEmail] = useState ("")
-    const [password, setPassword] = useState("")
+    const [email, setEmail] = useState ([undefined])
+    const [password, setPassword] = useState([undefined])
+    const [disable, setDisable] = useState(false)
 
 
     
     const navigate = useNavigate()
 
     function entrar (e) {
+        
         e.preventDefault()
         const body = {email, password}
 
         const url = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login"
         const promise = axios.post(url, body)
-
+        console.log(body)
         promise.then(res => navigate("/hoje") (setFotoPerfil(res.data.image)))
         promise.catch(err => alert(err.response.data.message))
-        
-       
     }
+
+    if (email.length === undefined && password.length === undefined){
+        return (
+            setDisable(!disable)
+        )
+    }
+        
 return (
    <Container>
     < Imagem>
@@ -34,14 +41,14 @@ return (
    </Imagem>
    <form onSubmit={entrar}>
     < Email >
-    <input data-test="email-input" type="email" placeholder="email" required value={email} onChange={e => setEmail(e.target.value)}/>
+    <input disabled={disable} data-test="email-input" type="email" placeholder="email" required value={email} onChange={e => setEmail(e.target.value)}/>
     </Email>
     < Senha >
-    <input data-test="password-input" type="password" placeholder="senha" required value={password} onChange={e => setPassword(e.target.value)}/>
+    <input disabled={disable} data-test="password-input" type="password" placeholder="senha" required value={password} onChange={e => setPassword(e.target.value)}/>
     </Senha>
     < Botao >
     
-    <button data-test="login-btn" type="submit" >Entrar</button>
+    <button disabled={disable} data-test="login-btn" type="submit" >Entrar</button>
    
     </Botao>
     </form>
