@@ -46,7 +46,9 @@ export default function Historico ({fotoPerfil}) {
             <Day>Hoje</Day>
             </Div>
            </Link>
-           <Link data-test="history-link"to="/historico" style={{ textDecoration: 'none' }}>
+            
+            
+           <Link data-test="history-link" to="/historico" style={{ textDecoration: 'none' }}>
             <Historic>
                 Histórico
             </Historic>

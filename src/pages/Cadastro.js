@@ -3,6 +3,7 @@ import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import styled from "styled-components"
 import fotoprincipal from "../images/group 8.png"
+import Loader from "../components/ThreeDots"
 
 export default function Cadastro () {
 
@@ -51,7 +52,7 @@ return (
     <input disabled={disable} data-test="user-image-input" type="url" placeholder="foto" required value={image} onChange={e => setImage(e.target.value)}/>
     </Foto>
     < Botao >
-    <button disabled={disable} data-test="signup-btn" type="submit" >Cadastrar </button>
+    <button disabled={disable} data-test="signup-btn" type="submit" >{disable ? <Loader /> : "Cadastrar"} </button>
     </Botao>
     </form>
     <Link data-test="login-link" to="/">
@@ -178,6 +179,9 @@ const Botao = styled.div`
     font-style: normal;
     border: none;
     outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     }
 `   
 

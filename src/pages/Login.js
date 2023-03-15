@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom"
 import styled from "styled-components"
 import fotoprincipal from "../images/group 8.png"
 import axios from "axios"
+import Loader from "../components/ThreeDots"
 
 
 
@@ -29,11 +30,6 @@ export default function Login ({setFotoPerfil}) {
         setDisable(!disable)
     }
 
-    // if (email.length === undefined && password.length === undefined){
-    //     return (
-    //         setDisable(!disable)
-    //     )
-    // }
         
 return (
    <Container>
@@ -47,10 +43,10 @@ return (
     < Senha >
     <input disabled={disable} data-test="password-input" type="password" placeholder="senha" required value={password} onChange={e => setPassword(e.target.value)}/>
     </Senha>
-    < Botao >
     
-    <button disabled={disable} data-test="login-btn" type="submit" >Entrar</button>
-   
+    < Botao >
+    <button disabled={disable} data-test="login-btn" type="submit"> {disable ? <Loader /> : "Entrar"} </button>
+    
     </Botao>
     </form>
     <Link data-test="signup-link" to="/cadastro">
@@ -59,10 +55,10 @@ return (
     </Texto>
     </Link>
    
-   
    </Container>
 )
 }
+
 
 const Imagem = styled.div `
     margin-top: 68px;
@@ -123,6 +119,7 @@ const Container = styled.div `
 `
 
 const Botao = styled.div`
+    
 
     button {
     width: 310px;
@@ -136,6 +133,9 @@ const Botao = styled.div`
     font-style: normal;
     border: none;
     outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     }
 `
 
