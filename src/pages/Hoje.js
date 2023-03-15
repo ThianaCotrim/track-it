@@ -2,6 +2,7 @@ import styled from "styled-components"
 import trackit from "../images/trackit.png"
 import perfil from "../images/perfil.png"
 import bolinha from "../images/bolinha.png"
+import check from "../images/check.png"
 
 export default function Hoje () {
     return (
@@ -25,7 +26,50 @@ export default function Hoje () {
         Nenhum hábito concluído ainda
         </h1>
         </Cima>
+
+
+
+
+        <ContainerTarefa>
+        <TarefaCriada>
+        <Textos>
+        <h1>Ler 1 capítulo de livro</h1>
+        <h2>Sequência atual: 3 dias <br />Seu recorde: 5 dias</h2>
+        </Textos>
+        <Quadrado>
+        <img src={check} alt={check}/>
+        </Quadrado>
+        </TarefaCriada>
+        </ContainerTarefa>
+
+        <ContainerTarefa>
+        <TarefaCriada>
+        <Textos>
+        <h1>Ler 1 capítulo de livro</h1>
+        <h2>Sequência atual: 3 dias <br />Seu recorde: 5 dias</h2>
+        </Textos>
+        <Quadrado>
+        <img src={check} alt={check}/>
+        </Quadrado>
+        </TarefaCriada>
+        </ContainerTarefa>
+
+        <ContainerTarefa>
+        <TarefaCriada>
+        <Textos>
+        <h1>Ler 1 capítulo de livro</h1>
+        <h2>Sequência atual: 3 dias <br />Seu recorde: 5 dias</h2>
+        </Textos>
+        <Quadrado>
+        <img src={check} alt={check}/>
+        </Quadrado>
+        </TarefaCriada>
+        </ContainerTarefa>
+        
        
+
+
+
 
         </Principal>
         <ContainerLow>
@@ -158,8 +202,56 @@ const Meus = styled.div `
     margin-left: 15px;
     margin-top:28px;
     margin-bottom: 5px;
+`
 
+const TarefaCriada = styled.div`
+    background-color: #FFFFFF;
+    width: 340px;
+    height: 94px;
+    border-radius: 5px;
+    display: flex;
+    
 
+    h1 {
+    font-family: 'Lexend Deca', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    color: #666666;
+    margin-left: 10px;
+    margin-top: 10px;
+    
+    }
 
-  
+    h2 {
+    font-family: 'Lexend Deca', sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    color: #666666;
+    margin-left: 10px;
+    margin-top: 8px;
+    line-height:17px;
+    }
+`
+
+const ContainerTarefa = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+`
+
+const Quadrado = styled.div`
+    background-color: #EBEBEB;
+    width: 69px;
+    height: 69px;
+    margin-top: 13px;
+    margin-left: 35px;
+    border: 1px solid #E7E7E7;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
+const Textos = styled.div`
 `
