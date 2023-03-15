@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import styled from "styled-components"
 import fotoprincipal from "../images/group 8.png"
 
@@ -14,13 +15,16 @@ return (
     <input type="password" placeholder="senha"/>
     </Senha>
     < Botao >
-    <button>
-        Entrar
-    </button>
+    < Link to="/hoje">
+    <button>Entrar</button>
+    </Link>
     </Botao>
+    <Link to="/cadastro">
     <Texto>
     Não tem uma conta? Cadastre-se!
     </Texto>
+    </Link>
+   
    
    </Container>
 )

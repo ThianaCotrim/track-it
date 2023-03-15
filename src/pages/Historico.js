@@ -2,6 +2,7 @@ import styled from "styled-components"
 import trackit from "../images/trackit.png"
 import perfil from "../images/perfil.png"
 import bolinha from "../images/bolinha.png"
+import { Link } from "react-router-dom"
 
 export default function Historico () {
     return (
@@ -30,13 +31,22 @@ export default function Historico () {
         </Principal>
         <ContainerLow>
          <Low>
-             <Habits>
-                 Hábitos
-             </Habits>
-             <img src={bolinha} alt={bolinha}/>
-             <Historic>
-                 Histórico
-             </Historic>
+         <Link to="/habitos" style={{ textDecoration: 'none' }}>
+            <Habits>
+                Hábitos
+            </Habits>
+            </Link>
+            <Link to="/hoje">
+           <Div>
+            <img src={bolinha} alt={bolinha}/>
+            <Day>Hoje</Day>
+            </Div>
+           </Link>
+           <Link to="/historico" style={{ textDecoration: 'none' }}>
+            <Historic>
+                Histórico
+            </Historic>
+            </Link>
          </Low>
         </ContainerLow> 
         </Container>
@@ -163,4 +173,20 @@ const Texto = styled.div`
     justify-content: center;
     align-items: center;
     margin-left: 10px;
+`
+
+const Div = styled.div`
+    display: flex;
+`
+
+const Day = styled.div`
+  position: fixed;
+  margin-top:35px;
+  margin-left: 25px;
+  color: #FFFFFF;
+  font-family: 'Lexend Deca', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+    
+
 `

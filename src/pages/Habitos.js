@@ -3,6 +3,7 @@ import trackit from "../images/trackit.png"
 import perfil from "../images/perfil.png"
 import bolinha from "../images/bolinha.png"
 import lixeirinha from "../images/lixeirinha.png"
+import { Link } from "react-router-dom"
 
 export default function Habitos () {
     return (
@@ -104,15 +105,25 @@ export default function Habitos () {
         Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!
         </Texto>
        </Principal>
+
        <ContainerLow>
         <Low>
+            <Link to="/habitos" style={{ textDecoration: 'none' }}>
             <Habits>
                 Hábitos
             </Habits>
+            </Link>
+           <Link to="/hoje">
+           <Div>
             <img src={bolinha} alt={bolinha}/>
+            <Day>Hoje</Day>
+            </Div>
+           </Link>
+            <Link to="/historico" style={{ textDecoration: 'none' }}>
             <Historic>
                 Histórico
             </Historic>
+            </Link>
         </Low>
        </ContainerLow> 
        </Container>
@@ -256,6 +267,7 @@ const Texto = styled.div`
     color: #666666;
     margin-top: 30px;
     padding: 10px;
+   
 `
 
 const Informacoes = styled.div`
@@ -355,6 +367,7 @@ const Tarefas = styled.div`
     border-radius: 5px;
     display: flex;
     margin-bottom: 10px;
+    display: none;
 
     img{
         width: 13px;
@@ -375,6 +388,22 @@ const Tarefas = styled.div`
 `
 
 const Tarefa = styled.div`
+
+`
+
+const Div = styled.div`
+    display: flex;
+`
+
+const Day = styled.div`
+  position: fixed;
+  margin-top:35px;
+  margin-left: 25px;
+  color: #FFFFFF;
+  font-family: 'Lexend Deca', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+    
 
 `
 
