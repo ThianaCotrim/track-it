@@ -9,7 +9,7 @@ export default function Historico ({fotoPerfil}) {
         <Container>
 
         <ContainerTopo>
-         <NavBar>
+         <NavBar data-test="header">
          <Link to="/">
             <img src={trackit} alt={trackit}/>
             </Link>

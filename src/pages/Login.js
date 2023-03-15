@@ -25,7 +25,7 @@ export default function Login ({setFotoPerfil}) {
         const promise = axios.post(url, body)
         console.log(body)
         promise.then(res => navigate("/hoje") (setFotoPerfil(res.data.image)))
-        promise.catch(err => alert(err.response.data.message))
+        promise.catch(err => alert(err.response.data.message)  (setDisable(disable)))
         setDisable(!disable)
     }
 

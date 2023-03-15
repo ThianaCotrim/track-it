@@ -25,7 +25,7 @@ export default function Cadastro () {
         const promise = axios.post(url, body)
 
         promise.then(res => navigate("/"))
-        promise.catch(err => alert(err.response.data.message))
+        promise.catch(err => alert(err.response.data.message) (setDisable(disable)))
         setDisable(!disable)
         
     }
@@ -51,7 +51,7 @@ return (
     <input disabled={disable} data-test="user-image-input" type="url" placeholder="foto" required value={image} onChange={e => setImage(e.target.value)}/>
     </Foto>
     < Botao >
-    <button data-test="signup-btn" type="submit" >Cadastrar </button>
+    <button disabled={disable} data-test="signup-btn" type="submit" >Cadastrar </button>
     </Botao>
     </form>
     <Link data-test="login-link" to="/">
