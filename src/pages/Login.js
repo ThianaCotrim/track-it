@@ -1,24 +1,45 @@
-import { Link } from "react-router-dom"
+import { useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
 import styled from "styled-components"
 import fotoprincipal from "../images/group 8.png"
+import axios from "axios"
 
 export default function Login () {
+
+    const [email, setEmail] = useState ("")
+    const [password, setPassword] = useState("")
+    const navigate = useNavigate()
+
+    function entrar (e) {
+        e.preventDefault()
+        const body = {email, password}
+
+        const url = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login"
+        const promise = axios.post(url, body)
+
+        promise.then(res => navigate("/hoje"))
+        promise.catch(err => alert(err.response.data.message))
+        
+       
+    }
 return (
    <Container>
     < Imagem>
    <img src={fotoprincipal} alt={fotoprincipal}/>
    </Imagem>
+   <form onSubmit={entrar}>
     < Email >
-    <input type="email" placeholder="email"/>
+    <input type="email" placeholder="email" required value={email} onChange={e => setEmail(e.target.value)}/>
     </Email>
     < Senha >
-    <input type="password" placeholder="senha"/>
+    <input type="password" placeholder="senha" required value={password} onChange={e => setPassword(e.target.value)}/>
     </Senha>
     < Botao >
-    < Link to="/hoje">
-    <button>Entrar</button>
-    </Link>
+    
+    <button type="submit" >Entrar</button>
+   
     </Botao>
+    </form>
     <Link to="/cadastro">
     <Texto>
     Não tem uma conta? Cadastre-se!

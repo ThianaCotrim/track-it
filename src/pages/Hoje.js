@@ -11,7 +11,9 @@ export default function Hoje () {
 
         <ContainerTopo>
          <NavBar>
-             <img src={trackit} alt={trackit}/>
+         <Link to="/">
+            <img src={trackit} alt={trackit}/>
+            </Link>
              <img src={perfil} alt={perfil}/>
          </NavBar>
         </ContainerTopo>
