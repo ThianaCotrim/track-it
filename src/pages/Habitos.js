@@ -4,13 +4,14 @@ import perfil from "../images/perfil.png"
 import bolinha from "../images/bolinha.png"
 import lixeirinha from "../images/lixeirinha.png"
 import { Link } from "react-router-dom"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import axios from "axios"
 
 
 
 export default function Habitos ({fotoPerfil}) {
-
+    
+  
     const [name, setName] = useState([])
     const [days, setDays] = useState([])
 
@@ -26,8 +27,8 @@ export default function Habitos ({fotoPerfil}) {
 
     const [cadastrar, setCadastrar] = useState("display: none")
     const [selecionado, setSelecionado] = useState([])
-    // const [aparecerTarefa, setAparecerTarefa] = useState("display:none");
     const [mostrarTarefas, setMostrarTarefas] = useState([])
+    
 
     function cadastrarTarefa () {
         setCadastrar("")
@@ -42,9 +43,7 @@ export default function Habitos ({fotoPerfil}) {
       }
     }
 
-    function cadastrarHabito (e) {
-        e.preventDefault()
-
+    useEffect(() => {
 
         const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODIzNiwiaWF0IjoxNjc5MDczMTU4fQ.8nJXRwyfcSP4At5kkFZqOWkl2bHeyA2RzdNGccApFKs"
         const config = {headers: { Authorization: `Bearer ${token}`}}
@@ -55,11 +54,19 @@ export default function Habitos ({fotoPerfil}) {
         
         promisse.then(res => setMostrarTarefas(res.data))
         promisse.catch(err => (console.log(err.response.data)))
-        
 
-        
-       
 
+    }, [cadastrarHabito])
+
+
+
+    function cadastrarHabito (e) {
+        e.preventDefault()
+
+
+        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODIzNiwiaWF0IjoxNjc5MDczMTU4fQ.8nJXRwyfcSP4At5kkFZqOWkl2bHeyA2RzdNGccApFKs"
+        const config = {headers: { Authorization: `Bearer ${token}`}}
+   
         const body = {name, days: selecionado}
 
         const url = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits"
@@ -95,9 +102,6 @@ export default function Habitos ({fotoPerfil}) {
             </Quadrado>
         </Cima>
 
-
-
-
         <Informacoes cadastrar={cadastrar}>
             <form>
             < Nome>
@@ -130,32 +134,47 @@ export default function Habitos ({fotoPerfil}) {
             </form>
         </Informacoes>
       
+            
+
             {mostrarTarefas.map(({id, name, days}) => (
             <Tarefas>
-        <Dias>
+        <Total>
         <p>
             {name}
         </p>
+        <AgoraVai>
         {dias.map(({id, dia}) => {
-                return (
-                    <Joao>
-                   
-                    
-                         {dia}
-                     </Joao>
+            return (
+                 <Dentro>
+                      {dia}
+                  </Dentro>
                 )
             })}
-           
+           </AgoraVai>
           
-           </Dias>
-        <img src={lixeirinha} />
-        </Tarefas>
-                
+           </Total>
+        <img src={lixeirinha} alt={lixeirinha}/>
+        </Tarefas>  
             ))}
+
+
+
+
+
 
         <Texto>
         Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!
         </Texto>
+
+
+
+
+
+
+
+
+
+
        </Principal>
 
        <ContainerLow>
@@ -225,6 +244,8 @@ const Principal= styled.div`
     text-align: center;
     margin-top: 70px;
     flex-direction: column;
+    height: 100%;
+    margin-bottom: 90px;
    
 `
 
@@ -324,7 +345,7 @@ const Texto = styled.div`
 
 const Informacoes = styled.div`
     background-color: #FFFFFF;
-    width: 340px;
+    width: 350px;
     height: 180px;
     border-radius: 5px;
     display: flex;
@@ -359,11 +380,7 @@ const Nome = styled.div`
     }
 `
 
-const Dias = styled.div`
-   
-    
-    
-`
+
 
 const ContainerDias = styled.div`
    
@@ -425,12 +442,11 @@ const Salvar = styled.div`
 
 const Tarefas = styled.div`
     background-color: #FFFFFF;
-    width: 340px;
+    width: 350px;
     height: 92px;
     border-radius: 5px;
     display: flex;
     margin-bottom: 10px;
-   
 
     img{
         width: 13px;
@@ -450,9 +466,6 @@ const Tarefas = styled.div`
     }
 `
 
-const Div = styled.div`
-    display: flex;
-`
 
 const Day = styled.div`
   position: fixed;
@@ -474,11 +487,36 @@ const Imagem = styled.div`
     height: 51px;
  }`
 
-const Joao = styled.div`
-display: flex;
-justify-content: center;
-background-color: green;
+const Div = styled.div`
+    display: flex;
 `
 
 
+const Total = styled.div`
 
+display: flex;
+flex-direction: column;
+
+`
+
+
+const Dentro = styled.div`
+ width: 30px;
+    height: 30px;
+    margin-left: 15px;
+    margin-top: 8px;
+    border: 1px solid #D4D4D4;
+    border-radius: 5px;
+   font-family: 'Lexend Deca', sans-serif;
+   font-weight: 400;
+   font-size: 19px;
+   display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #DBDBDB;
+`
+
+const AgoraVai = styled.div`
+
+display: flex;
+`
