@@ -7,7 +7,7 @@ import Loader from "../components/ThreeDots"
 
 
 
-export default function Login ({setFotoPerfil, setToken}) {
+export default function Login ({setFotoPerfil, setTokem}) {
 
     const [email, setEmail] = useState ([undefined])
     const [password, setPassword] = useState([undefined])
@@ -29,11 +29,11 @@ export default function Login ({setFotoPerfil, setToken}) {
         
         
 
-        promise.then(res => navigate("/hoje") (setFotoPerfil(res.data.image)))
+        promise.then(res => navigate("/hoje") (setTokem(res.data.token)))
       
         promise.catch(err => alert(err.response.data.message)  (setDisable(disable)))
         setDisable(!disable)
-      
+        
     }
 
         

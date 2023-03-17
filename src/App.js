@@ -10,6 +10,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
 
   const [fotoPerfil, setFotoPerfil] = useState()
+  const [tokem, setTokem] = useState()
   
 
 
@@ -17,9 +18,9 @@ function App() {
         <BrowserRouter>
         <Routes>
         
-          <Route path="/" element={<Login setFotoPerfil={setFotoPerfil} />}/>
+          <Route path="/" element={<Login setFotoPerfil={setFotoPerfil} setTokem={setTokem}/>}/>
           <Route path="/cadastro" element={<Cadastro/>}/>
-          <Route path="/habitos" element={<Habitos fotoPerfil={fotoPerfil}/>}/>
+          <Route path="/habitos" element={<Habitos fotoPerfil={fotoPerfil} tokem={tokem}/>}/>
           <Route path="/hoje" element={<Hoje fotoPerfil={fotoPerfil}/>}/>
           <Route path="/historico" element={<Historico fotoPerfil={fotoPerfil}/>}/>
           

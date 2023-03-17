@@ -9,7 +9,7 @@ import axios from "axios"
 
 
 
-export default function Habitos ({fotoPerfil}) {
+export default function Habitos ({fotoPerfil, tokem}) {
     
   
     const [name, setName] = useState([])
@@ -46,8 +46,8 @@ export default function Habitos ({fotoPerfil}) {
 
     useEffect(() => {
 
-        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODIzNiwiaWF0IjoxNjc5MDczMTU4fQ.8nJXRwyfcSP4At5kkFZqOWkl2bHeyA2RzdNGccApFKs"
-        const config = {headers: { Authorization: `Bearer ${token}`}}
+        // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODIzNiwiaWF0IjoxNjc5MDczMTU4fQ.8nJXRwyfcSP4At5kkFZqOWkl2bHeyA2RzdNGccApFKs"
+        const config = {headers: { Authorization: `Bearer ${tokem}`}}
         const URL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits"
 
         
@@ -65,8 +65,8 @@ export default function Habitos ({fotoPerfil}) {
         e.preventDefault()
 
 
-        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODIzNiwiaWF0IjoxNjc5MDczMTU4fQ.8nJXRwyfcSP4At5kkFZqOWkl2bHeyA2RzdNGccApFKs"
-        const config = {headers: { Authorization: `Bearer ${token}`}}
+        // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODIzNiwiaWF0IjoxNjc5MDczMTU4fQ.8nJXRwyfcSP4At5kkFZqOWkl2bHeyA2RzdNGccApFKs"
+        const config = {headers: { Authorization: `Bearer ${tokem}`}}
    
         const body = {name, days: selecionado}
 
@@ -83,8 +83,8 @@ export default function Habitos ({fotoPerfil}) {
     function deletar (id) {
         
 
-        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODIzNiwiaWF0IjoxNjc5MDczMTU4fQ.8nJXRwyfcSP4At5kkFZqOWkl2bHeyA2RzdNGccApFKs"
-        const config = {headers: { Authorization: `Bearer ${token}`}}
+        // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODIzNiwiaWF0IjoxNjc5MDczMTU4fQ.8nJXRwyfcSP4At5kkFZqOWkl2bHeyA2RzdNGccApFKs"
+        const config = {headers: { Authorization: `Bearer ${tokem}`}}
 
         const Url = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`
         const promice = axios.delete(Url, config)
