@@ -6,18 +6,38 @@ import lixeirinha from "../images/lixeirinha.png"
 import { Link } from "react-router-dom"
 import { useState } from "react"
 
+
+
 export default function Habitos ({fotoPerfil}) {
 
+     const dias = [
+        {id: 0, dia: "D"},
+        {id: 1, dia: "S"},
+        {id: 2, dia: "T"},
+        {id: 3, dia: "Q"},
+        {id: 4, dia: "Q"},
+        {id: 5, dia: "S"},
+        {id: 6, dia: "S"},
+     ]
+
     const [cadastrar, setCadastrar] = useState("display: none")
-    const [selecionado, setSelecionado] = useState("#FFFFFF")
+    const [selecionado, setSelecionado] = useState([])
 
     function cadastrarTarefa () {
         setCadastrar("")
     }
 
-    function selecionar () {
-        setSelecionado("#CFCFCF")
+
+
+    function selecionar (d) {
+      if (!selecionado.includes(d)){
+        setSelecionado([...selecionado, d])
+      } else {
+        setSelecionado(selecionado.filter(dia => dia !== d))
+      }
     }
+
+    
 
     return (
         <Container>
@@ -51,15 +71,20 @@ export default function Habitos ({fotoPerfil}) {
             < Nome>
                  <input type="text" placeholder="nome do hábito"/>
             </Nome>
-            <Dias selecionado={selecionado}>
-                <button  onClick={selecionar}>D</button>
-                <button selecionado={selecionado} onClick={selecionar}>S</button>
-                <button onClick={selecionar}>T</button>
-                <button onClick={selecionar}>Q</button>
-                <button onClick={selecionar}>Q</button>
-                <button onClick={selecionar}>S</button>
-                <button onClick={selecionar}>S</button>
-            </Dias>
+            <ContainerDias>
+            {dias.map(({id, dia}) => {
+                return (
+                   <Days
+                    key={id}
+                    id={id}
+                    select = {selecionado.includes(id)}
+                    onClick = {() => selecionar(id)}
+                    type = "button" >
+                        {dia}
+                    </Days>
+                )
+            })}
+            </ContainerDias>
             <CancelarESalvar>
                 <Cancelar>
                     Cancelar
@@ -69,10 +94,6 @@ export default function Habitos ({fotoPerfil}) {
                 </Salvar>
             </CancelarESalvar>
         </Informacoes>
-
-
-
-
 
 
 
@@ -336,24 +357,38 @@ const Nome = styled.div`
 `
 
 const Dias = styled.div`
-    width: 235px;
-    height: 31px;
+   
+    background-color: ${({select}) => select ? "#CFCFCF" : "#FFFFFF"};
+ 
+   
+   
+    color: ${({select}) => select ? "#FFFFFF" : "#DBDBDB"};
+
+`
+
+const ContainerDias = styled.div`
+   
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+   
+    margin-right: 10px;
+`
+
+const Days = styled.div`
+    width: 30px;
+    height: 30px;
     margin-left: 15px;
     margin-top: 8px;
-
-    button {
-        border: 1px solid #D4D4D4;
-        background-color: #FFFFFF;
-        border-radius: 5px;
-        width: 30px;
-        height: 30px;
-        font-family: 'Lexend Deca', sans-serif;
-        font-weight: 400;
-        font-size: 19px;
-        color: #DBDBDB;
-}
+    border: 1px solid #D4D4D4;
+    border-radius: 5px;
+   font-family: 'Lexend Deca', sans-serif;
+   font-weight: 400;
+   font-size: 19px;
+   display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: ${({select}) => select ? "#CFCFCF" : "#FFFFFF"};
+ color: ${({select}) => select ? "#FFFFFF" : "#DBDBDB"};
 `
 
 const CancelarESalvar = styled.div`
@@ -444,5 +479,7 @@ const Imagem = styled.div`
     width: 51px;
     height: 51px;
  }`
+
+
 
 
