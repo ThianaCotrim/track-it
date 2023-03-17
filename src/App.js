@@ -10,6 +10,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
 
   const [fotoPerfil, setFotoPerfil] = useState()
+  const [testeId, setTesteId] = useState()
   
 
 
@@ -19,7 +20,7 @@ function App() {
         
           <Route path="/" element={<Login setFotoPerfil={setFotoPerfil} />}/>
           <Route path="/cadastro" element={<Cadastro/>}/>
-          <Route path="/habitos" element={<Habitos fotoPerfil={fotoPerfil}/>}/>
+          <Route path="/habitos" element={<Habitos fotoPerfil={fotoPerfil} testeId={testeId} setTesteId={setTesteId}/>}/>
           <Route path="/hoje" element={<Hoje fotoPerfil={fotoPerfil}/>}/>
           <Route path="/historico" element={<Historico fotoPerfil={fotoPerfil}/>}/>
           

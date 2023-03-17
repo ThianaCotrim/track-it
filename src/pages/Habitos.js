@@ -9,7 +9,7 @@ import axios from "axios"
 
 
 
-export default function Habitos ({fotoPerfil}) {
+export default function Habitos ({fotoPerfil, setTesteId, testeId}) {
     
   
     const [name, setName] = useState([])
@@ -72,10 +72,25 @@ export default function Habitos ({fotoPerfil}) {
         const url = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits"
         const promise = axios.post(url, body, config)
        
-        promise.then(res => (setCadastrar("display:none")) (console.log(res.data)) )
+        promise.then(res => (setCadastrar("display:none")) (console.log(res.data)) (setTesteId(res.data.id)))
         promise.catch(err => alert(err.response.data.message))
-
     }
+
+    function deletar (id) {
+        
+
+        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODIzNiwiaWF0IjoxNjc5MDczMTU4fQ.8nJXRwyfcSP4At5kkFZqOWkl2bHeyA2RzdNGccApFKs"
+        const config = {headers: { Authorization: `Bearer ${token}`}}
+
+        const Url = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`
+        const promice = axios.delete(Url, config)
+
+        promice.then(res => console.log(res.data))
+        promice.catch(err => console.log(err.response.data))
+        
+    }
+
+  
 
     return (
         <Container>
@@ -143,37 +158,25 @@ export default function Habitos ({fotoPerfil}) {
             {name}
         </p>
         <AgoraVai>
-        {dias.map(({id, dia}) => {
+        {dias.map(({dia}) => {
             return (
-                 <Dentro>
+                 <Dentro >
                       {dia}
+                     
                   </Dentro>
+                 
                 )
             })}
            </AgoraVai>
           
            </Total>
-        <img src={lixeirinha} alt={lixeirinha}/>
+        <img onClick={() => deletar(id)} src={lixeirinha} alt={lixeirinha}/>
         </Tarefas>  
             ))}
-
-
-
-
-
 
         <Texto>
         Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!
         </Texto>
-
-
-
-
-
-
-
-
-
 
        </Principal>
 
@@ -501,6 +504,7 @@ flex-direction: column;
 
 
 const Dentro = styled.div`
+background-color: #FFFFFF;
  width: 30px;
     height: 30px;
     margin-left: 15px;
