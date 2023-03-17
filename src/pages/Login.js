@@ -7,27 +7,33 @@ import Loader from "../components/ThreeDots"
 
 
 
-export default function Login ({setFotoPerfil}) {
+export default function Login ({setFotoPerfil, setToken}) {
 
     const [email, setEmail] = useState ([undefined])
     const [password, setPassword] = useState([undefined])
     const [disable, setDisable] = useState(false)
-
 
     
     const navigate = useNavigate()
 
     function entrar (e) {
         
+      
         e.preventDefault()
         const body = {email, password}
 
         const url = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login"
+
         const promise = axios.post(url, body)
-        console.log(body)
+
+        
+        
+
         promise.then(res => navigate("/hoje") (setFotoPerfil(res.data.image)))
+      
         promise.catch(err => alert(err.response.data.message)  (setDisable(disable)))
         setDisable(!disable)
+      
     }
 
         

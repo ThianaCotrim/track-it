@@ -5,10 +5,14 @@ import bolinha from "../images/bolinha.png"
 import lixeirinha from "../images/lixeirinha.png"
 import { Link } from "react-router-dom"
 import { useState } from "react"
+import axios from "axios"
 
 
 
 export default function Habitos ({fotoPerfil}) {
+
+    const [name, setName] = useState([])
+    const [days, setDays] = useState([])
 
      const dias = [
         {id: 0, dia: "D"},
@@ -22,12 +26,12 @@ export default function Habitos ({fotoPerfil}) {
 
     const [cadastrar, setCadastrar] = useState("display: none")
     const [selecionado, setSelecionado] = useState([])
+    const [aparecerTarefa, setAparecerTarefa] = useState("display:none");
 
     function cadastrarTarefa () {
         setCadastrar("")
+        
     }
-
-
 
     function selecionar (d) {
       if (!selecionado.includes(d)){
@@ -37,7 +41,22 @@ export default function Habitos ({fotoPerfil}) {
       }
     }
 
-    
+    function cadastrarHabito (e) {
+        e.preventDefault()
+        
+
+        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODIzNiwiaWF0IjoxNjc5MDczMTU4fQ.8nJXRwyfcSP4At5kkFZqOWkl2bHeyA2RzdNGccApFKs"
+        const config = {headers: { Authorization: `Bearer ${token}`}}
+
+        const body = {name, days: selecionado}
+
+        const url = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits"
+        const promise = axios.post(url, body, config)
+       
+        promise.then(res => (setCadastrar("display:none")) (setAparecerTarefa("")) (console.log(res.data)) )
+        promise.catch(err => alert(err.response.data.message))
+        
+    }
 
     return (
         <Container>
@@ -68,13 +87,16 @@ export default function Habitos ({fotoPerfil}) {
 
 
         <Informacoes cadastrar={cadastrar}>
+            <form>
             < Nome>
-                 <input type="text" placeholder="nome do hábito"/>
+                 <input value={name} onChange={e => setName(e.target.value)} type="text" placeholder="nome do hábito"/>
             </Nome>
             <ContainerDias>
             {dias.map(({id, dia}) => {
                 return (
                    <Days
+                   value={days}
+                   onChange={e => setDays(e.target.value)}
                     key={id}
                     id={id}
                     select = {selecionado.includes(id)}
@@ -85,19 +107,20 @@ export default function Habitos ({fotoPerfil}) {
                 )
             })}
             </ContainerDias>
-            <CancelarESalvar>
+                        <CancelarESalvar>
                 <Cancelar>
                     Cancelar
                 </Cancelar>
-                <Salvar>
+                <Salvar onClick={cadastrarHabito}>
                     <p>Salvar</p>
                 </Salvar>
             </CancelarESalvar>
+            </form>
         </Informacoes>
 
 
 
-        <Tarefas >
+        <Tarefas aparecerTarefa={aparecerTarefa} >
         <Tarefa>
         <p>
             Ler 1 capítulo de um livro
@@ -115,41 +138,8 @@ export default function Habitos ({fotoPerfil}) {
         <img src={lixeirinha} alt={lixeirinha}/>
         </Tarefas>
 
-        <Tarefas>
-        <Tarefa>
-        <p>
-            Ler 1 capítulo de um livro
-        </p>
-        <Dias>
-                <button>D</button>
-                <button>S</button>
-                <button>T</button>
-                <button>Q</button>
-                <button>Q</button>
-                <button>S</button>
-                <button>S</button>
-            </Dias>
-        </Tarefa>
-        <img src={lixeirinha} alt={lixeirinha}/>
-        </Tarefas>
 
-        <Tarefas>
-        <Tarefa>
-        <p>
-            Ler 1 capítulo de um livro
-        </p>
-        <Dias>
-                <button>D</button>
-                <button>S</button>
-                <button>T</button>
-                <button>Q</button>
-                <button>Q</button>
-                <button>S</button>
-                <button>S</button>
-            </Dias>
-        </Tarefa>
-        <img src={lixeirinha} alt={lixeirinha}/>
-        </Tarefas>
+
 
         <Texto>
         Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!
@@ -359,18 +349,13 @@ const Nome = styled.div`
 const Dias = styled.div`
    
     background-color: ${({select}) => select ? "#CFCFCF" : "#FFFFFF"};
- 
-   
-   
     color: ${({select}) => select ? "#FFFFFF" : "#DBDBDB"};
-
 `
 
 const ContainerDias = styled.div`
    
     display: flex;
     justify-content: center;
-   
     margin-right: 10px;
 `
 
@@ -432,7 +417,7 @@ const Tarefas = styled.div`
     border-radius: 5px;
     display: flex;
     margin-bottom: 10px;
-    display: none;
+    display: ${({aparecerTarefa}) => aparecerTarefa ? "none" : ""};
 
     img{
         width: 13px;
