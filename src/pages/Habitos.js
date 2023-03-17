@@ -9,7 +9,7 @@ import axios from "axios"
 
 
 
-export default function Habitos ({fotoPerfil, setTesteId, testeId}) {
+export default function Habitos ({fotoPerfil}) {
     
   
     const [name, setName] = useState([])
@@ -28,6 +28,7 @@ export default function Habitos ({fotoPerfil, setTesteId, testeId}) {
     const [cadastrar, setCadastrar] = useState("display: none")
     const [selecionado, setSelecionado] = useState([])
     const [mostrarTarefas, setMostrarTarefas] = useState([])
+    const [disable, setDisable] = useState(false)
     
 
     function cadastrarTarefa () {
@@ -72,8 +73,11 @@ export default function Habitos ({fotoPerfil, setTesteId, testeId}) {
         const url = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits"
         const promise = axios.post(url, body, config)
        
-        promise.then(res => (setCadastrar("display:none")) (console.log(res.data)) (setTesteId(res.data.id)))
+        promise.then(res => (setCadastrar("display:none")) (console.log(res.data)) (setDisable(disable)))
         promise.catch(err => alert(err.response.data.message))
+        setName([])
+        setSelecionado([])
+
     }
 
     function deletar (id) {
@@ -87,9 +91,11 @@ export default function Habitos ({fotoPerfil, setTesteId, testeId}) {
 
         promice.then(res => console.log(res.data))
         promice.catch(err => console.log(err.response.data))
-        
     }
 
+    function cancelar (){
+        setCadastrar("display:none")
+    }
   
 
     return (
@@ -120,7 +126,7 @@ export default function Habitos ({fotoPerfil, setTesteId, testeId}) {
         <Informacoes cadastrar={cadastrar}>
             <form>
             < Nome>
-                 <input value={name} onChange={e => setName(e.target.value)} type="text" placeholder="nome do hábito"/>
+                 <input disabled={disable} value={name} onChange={e => setName(e.target.value)} type="text" placeholder="nome do hábito"/>
             </Nome>
             <ContainerDias>
             {dias.map(({id, dia}) => {
@@ -132,14 +138,15 @@ export default function Habitos ({fotoPerfil, setTesteId, testeId}) {
                     id={id}
                     select = {selecionado.includes(id)}
                     onClick = {() => selecionar(id)}
-                    type = "button" >
+                    type = "button" 
+                    disabled={disable}>
                         {dia}
                     </Days>
                 )
             })}
             </ContainerDias>
                         <CancelarESalvar>
-                <Cancelar>
+                <Cancelar onClick={cancelar}>
                     Cancelar
                 </Cancelar>
                 <Salvar onClick={cadastrarHabito}>
@@ -160,7 +167,7 @@ export default function Habitos ({fotoPerfil, setTesteId, testeId}) {
         <AgoraVai>
         {dias.map(({dia}) => {
             return (
-                 <Dentro >
+                 <Dentro>
                       {dia}
                      
                   </Dentro>
@@ -175,6 +182,7 @@ export default function Habitos ({fotoPerfil, setTesteId, testeId}) {
             ))}
 
         <Texto>
+            
         Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!
         </Texto>
 
