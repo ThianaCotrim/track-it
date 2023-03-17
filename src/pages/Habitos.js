@@ -26,7 +26,8 @@ export default function Habitos ({fotoPerfil}) {
 
     const [cadastrar, setCadastrar] = useState("display: none")
     const [selecionado, setSelecionado] = useState([])
-    const [aparecerTarefa, setAparecerTarefa] = useState("display:none");
+    // const [aparecerTarefa, setAparecerTarefa] = useState("display:none");
+    const [mostrarTarefas, setMostrarTarefas] = useState([])
 
     function cadastrarTarefa () {
         setCadastrar("")
@@ -43,19 +44,30 @@ export default function Habitos ({fotoPerfil}) {
 
     function cadastrarHabito (e) {
         e.preventDefault()
-        
+
 
         const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODIzNiwiaWF0IjoxNjc5MDczMTU4fQ.8nJXRwyfcSP4At5kkFZqOWkl2bHeyA2RzdNGccApFKs"
         const config = {headers: { Authorization: `Bearer ${token}`}}
+        const URL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits"
+
+        
+        const promisse = axios.get(URL, config )
+        
+        promisse.then(res => setMostrarTarefas(res.data))
+        promisse.catch(err => (console.log(err.response.data)))
+        
+
+        
+       
 
         const body = {name, days: selecionado}
 
         const url = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits"
         const promise = axios.post(url, body, config)
        
-        promise.then(res => (setCadastrar("display:none")) (setAparecerTarefa("")) (console.log(res.data)) )
+        promise.then(res => (setCadastrar("display:none")) (console.log(res.data)) )
         promise.catch(err => alert(err.response.data.message))
-        
+
     }
 
     return (
@@ -117,29 +129,29 @@ export default function Habitos ({fotoPerfil}) {
             </CancelarESalvar>
             </form>
         </Informacoes>
-
-
-
-        <Tarefas aparecerTarefa={aparecerTarefa} >
-        <Tarefa>
-        <p>
-            Ler 1 capítulo de um livro
-        </p>
+      
+            {mostrarTarefas.map(({id, name, days}) => (
+            <Tarefas>
         <Dias>
-                <button>D</button>
-                <button>S</button>
-                <button>T</button>
-                <button>Q</button>
-                <button>Q</button>
-                <button>S</button>
-                <button>S</button>
-            </Dias>
-        </Tarefa>
-        <img src={lixeirinha} alt={lixeirinha}/>
+        <p>
+            {name}
+        </p>
+        {dias.map(({id, dia}) => {
+                return (
+                    <Joao>
+                   
+                    
+                         {dia}
+                     </Joao>
+                )
+            })}
+           
+          
+           </Dias>
+        <img src={lixeirinha} />
         </Tarefas>
-
-
-
+                
+            ))}
 
         <Texto>
         Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!
@@ -318,6 +330,7 @@ const Informacoes = styled.div`
     display: flex;
     flex-direction: column;
     display: ${({cadastrar}) => cadastrar ? "none" : ""};
+    margin-bottom: 20px;
    
 `
 
@@ -348,8 +361,8 @@ const Nome = styled.div`
 
 const Dias = styled.div`
    
-    background-color: ${({select}) => select ? "#CFCFCF" : "#FFFFFF"};
-    color: ${({select}) => select ? "#FFFFFF" : "#DBDBDB"};
+    
+    
 `
 
 const ContainerDias = styled.div`
@@ -417,7 +430,7 @@ const Tarefas = styled.div`
     border-radius: 5px;
     display: flex;
     margin-bottom: 10px;
-    display: ${({aparecerTarefa}) => aparecerTarefa ? "none" : ""};
+   
 
     img{
         width: 13px;
@@ -435,10 +448,6 @@ const Tarefas = styled.div`
     margin-right: 35px;
     margin-bottom: 13px;
     }
-`
-
-const Tarefa = styled.div`
-
 `
 
 const Div = styled.div`
@@ -465,6 +474,11 @@ const Imagem = styled.div`
     height: 51px;
  }`
 
+const Joao = styled.div`
+display: flex;
+justify-content: center;
+background-color: green;
+`
 
 
 
