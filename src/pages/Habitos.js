@@ -36,6 +36,7 @@ export default function Habitos ({fotoPerfil, tokem}) {
     }
 
     function selecionar (d) {
+        console.log(d)
       if (!selecionado.includes(d)){
         setSelecionado([...selecionado, d])
       } else {
@@ -161,11 +162,10 @@ export default function Habitos ({fotoPerfil, tokem}) {
                 {name}
             </p>
             <AgoraVai>
-            {dias.map(({dia}) => {
+            {dias.map(({id ,dia}) => {
                 return (
-                     <Dentro>
-                          {dia}
-                         
+                     <Dentro marcar = {days.includes(id)}>
+                          {dia}             
                       </Dentro>
                     )
                 })}
@@ -514,7 +514,7 @@ flex-direction: column;
 
 
 const Dentro = styled.div`
-background-color: #FFFFFF;
+ background-color: ${({marcar}) => marcar ? "#CFCFCF" : "#FFFFFF"};
  width: 30px;
     height: 30px;
     margin-left: 15px;
