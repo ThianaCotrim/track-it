@@ -73,6 +73,7 @@ export default function Habitos ({fotoPerfil, tokem}) {
        
         promise.then(res => (setCadastrar("display:none")) (console.log(res.data)) (setDisable(disable)))
         promise.catch(err => alert(err.response.data.message))
+        setDisable(disable)
         setName([])
         setSelecionado([])
 
@@ -122,7 +123,7 @@ export default function Habitos ({fotoPerfil, tokem}) {
         <Meus>
         Meus Hábitos
         </Meus>
-            <Quadrado data-test="habit-create-btn" onClick={cadastrarTarefa}>
+            <Quadrado disabled={disable} data-test="habit-create-btn" onClick={cadastrarTarefa}>
                 <p>+</p>
             </Quadrado>
         </Cima>
@@ -151,10 +152,10 @@ export default function Habitos ({fotoPerfil, tokem}) {
             })}
             </ContainerDias>
                         <CancelarESalvar>
-                <Cancelar data-test="habit-create-cancel-btn" onClick={cancelar}>
+                <Cancelar disabled={disable} data-test="habit-create-cancel-btn" onClick={cancelar}>
                     Cancelar
                 </Cancelar>
-                <Salvar data-test="habit-create-save-btn" onClick={cadastrarHabito}>
+                <Salvar disabled={disable} data-test="habit-create-save-btn" onClick={cadastrarHabito}>
                     <p>Salvar</p>
                 </Salvar>
             </CancelarESalvar>
