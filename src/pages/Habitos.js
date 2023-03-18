@@ -80,7 +80,9 @@ export default function Habitos ({fotoPerfil, tokem}) {
 
     function deletar (id) {
         
+        const confirmacao = window.confirm('Tem certeza que deseja excluir essa tarefa?');
 
+        if (confirmacao) {
         const config = {headers: { Authorization: `Bearer ${tokem}`}}
 
         const Url = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`
@@ -88,7 +90,12 @@ export default function Habitos ({fotoPerfil, tokem}) {
 
         promice.then(res => console.log(res.data))
         promice.catch(err => console.log(err.response.data))
+    } else {
+
     }
+} 
+
+
 
     function cancelar (){
         setCadastrar("display:none")
@@ -192,7 +199,7 @@ export default function Habitos ({fotoPerfil, tokem}) {
        </Principal>
 
        <ContainerLow>
-        <Low>
+        <Low data-test="menu">
             <Link to="/habitos" style={{ textDecoration: 'none' }}>
             <Habits>
                 Hábitos

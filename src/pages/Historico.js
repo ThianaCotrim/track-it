@@ -33,9 +33,10 @@ export default function Historico ({fotoPerfil}) {
 
 
         </Principal>
+
         <ContainerLow>
          <Low data-test="menu">
-         <Link data-test="habit-link" to="/habitos" style={{ textDecoration: 'none' }}>
+         <Link to="/habitos" data-test="habit-link" style={{ textDecoration: 'none' }}>
             <Habits>
                 Hábitos
             </Habits>
