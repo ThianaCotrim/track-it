@@ -33,6 +33,7 @@ export default function Habitos ({fotoPerfil, tokem}) {
 
     function cadastrarTarefa () {
         setCadastrar("")
+        setDisabled(false)
     }
 
     function selecionar (d) {
@@ -55,6 +56,7 @@ export default function Habitos ({fotoPerfil, tokem}) {
         promisse.then(res => setMostrarTarefas(res.data))
         promisse.catch(err => (console.log(err.response.data)))
 
+       
 
     }, [cadastrarHabito])
 
@@ -94,12 +96,11 @@ export default function Habitos ({fotoPerfil, tokem}) {
     }
 } 
 
-
-
     function cancelar (){
         setCadastrar("display:none")
     }
   
+    
 
     return (
         <Container>

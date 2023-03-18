@@ -11,12 +11,15 @@ import 'dayjs/locale/pt-br';
 
 export default function Hoje ({fotoPerfil, tokem}) {
 
+   
+
     const [mostrarHoje, setMostrarHoje] = useState([])
     const [chec, setChec] = useState([])
     dayjs.locale('pt-br');
     const biblioteca = dayjs();
     const formato = biblioteca.format('DD/MM');
     const diaSemana = biblioteca.format('dddd')
+    const [clicou, setClicou] = useState(false)
 
     useEffect(() => {
         const config = {headers: { Authorization: `Bearer ${tokem}`}}
@@ -27,13 +30,22 @@ export default function Hoje ({fotoPerfil, tokem}) {
         promise.catch(err => console.log(err.response.data))
     }, [])
 
+
     function feito (d) {
         if (!chec.includes(d)){
             setChec([...chec, d])
+            setClicou(true)
           } else {
-            setChec(chec.filter(a => a !== d))
+            setChec(chec.filter(a => a !== d)) 
+            setClicou(false)
           }
         }
+    
+        let totalDeHabitos = mostrarHoje.length;
+        let habitosConcluidos = chec.length;
+        let porcentagem = Number(((habitosConcluidos / totalDeHabitos) * 100).toFixed(2))+ "%";
+
+        
     
     return (
         <Container>
@@ -55,19 +67,34 @@ export default function Hoje ({fotoPerfil, tokem}) {
         {diaSemana}, {formato}
         </p>
         </Meus>
-        <h1>
-        Nenhum hábito concluído ainda
-        </h1>
+        
+        {clicou === false ? 
+        
+         <h1>
+         Nenhum hábito concluído ainda
+         </h1>
+         :
+         <Testando data-test="today-counter">
+         <h2>
+         {porcentagem} dos hábitos concluídos
+         </h2>
+         </Testando>
+        
+    }
+    
+    
+   
+       
         </Cima>
             {mostrarHoje.map(({id, name, done, currentSequence, highestSequence}) => {
                 return (
                     <ContainerTarefa data-test="today-habit-container">
                     <TarefaCriada key={id}>
-                 <Textos>
-                 <h1>{name}</h1>
+                 <Textos data-test="today-habit-name">
+                 <h1 data-test="today-habit-name" >{name}</h1>
                  <h2>Sequência atual: 3 dias <br />Seu recorde: 5 dias</h2>
                  </Textos>
-                 <Quadrado mudar={chec.includes(id)} onClick={() => feito(id)}>
+                 <Quadrado clicou={clicou} mudar={chec.includes(id)} onClick={() => feito(id)}>
                  <img src={check} alt={check}/>
                  </Quadrado>
                  {done}
@@ -205,6 +232,15 @@ const Cima = styled.div`
     font-size: 18px;
     margin-left: 15px;
     }
+
+    h2{
+    color: #8FC549;
+    font-family: 'Lexend Deca', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    margin-left: 15px;
+    }
+    
 `
 
 const Meus = styled.div `
@@ -294,5 +330,8 @@ const Imagem = styled.div`
     width: 51px;
     height: 51px;
  }
+`
+
+const Testando = styled.div`
 `
 
