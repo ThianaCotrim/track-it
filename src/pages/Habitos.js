@@ -72,11 +72,10 @@ export default function Habitos ({fotoPerfil, tokem}) {
         const promise = axios.post(url, body, config)
        
         promise.then(res => (setCadastrar("display:none")) (console.log(res.data)) (setDisable(disable)))
-        promise.catch(err => alert(err.response.data.message))
+        promise.catch(err => alert(err.response.data.message) (setDisable(disable)))
         setDisable(disable)
         setName([])
         setSelecionado([])
-
     }
 
     function deletar (id) {
@@ -107,7 +106,7 @@ export default function Habitos ({fotoPerfil, tokem}) {
         <Container>
 
        <ContainerTopo>
-        <NavBar>
+        <NavBar data-test="header">
             <Link to="/">
             <img src={trackit} alt={trackit}/>
             </Link>
