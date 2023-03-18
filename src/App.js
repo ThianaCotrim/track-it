@@ -21,7 +21,7 @@ function App() {
           <Route path="/" element={<Login setFotoPerfil={setFotoPerfil} setTokem={setTokem}/>}/>
           <Route path="/cadastro" element={<Cadastro/>}/>
           <Route path="/habitos" element={<Habitos fotoPerfil={fotoPerfil} tokem={tokem}/>}/>
-          <Route path="/hoje" element={<Hoje fotoPerfil={fotoPerfil}/>}/>
+          <Route path="/hoje" element={<Hoje fotoPerfil={fotoPerfil} tokem={tokem}/>}/>
           <Route path="/historico" element={<Historico fotoPerfil={fotoPerfil}/>}/>
           
         </Routes>

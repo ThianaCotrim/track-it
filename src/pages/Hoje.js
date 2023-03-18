@@ -4,9 +4,28 @@ import perfil from "../images/perfil.png"
 import bolinha from "../images/bolinha.png"
 import check from "../images/check.png"
 import { Link } from "react-router-dom"
+import { useEffect, useState } from "react"
+import axios from "axios"
 
 
-export default function Hoje ({fotoPerfil}) {
+export default function Hoje ({fotoPerfil, tokem}) {
+
+    const [mostrarHoje, setMostrarHoje] = useState([])
+
+    function hoje () {
+        alert('oi')
+    }
+
+    useEffect(() => {
+        const config = {headers: { Authorization: `Bearer ${tokem}`}}
+        const URL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today"
+
+        const promise = axios.get(URL, config)
+        promise.then(res => (setMostrarHoje(res.data)))
+        promise.catch(err => console.log(err.response.data))
+
+
+    })
 
     return (
         <Container>
@@ -37,47 +56,34 @@ export default function Hoje ({fotoPerfil}) {
 
 
 
+        
+        
+        
+            {mostrarHoje.map(({id, name, done, currentSequence, highestSequence}) => {
+                return (
+                    <ContainerTarefa>
+                    <TarefaCriada>
+                 <Textos>
+                 <h1>{name}</h1>
+                 <h2>Sequência atual: 3 dias <br />Seu recorde: 5 dias</h2>
+                 </Textos>
+                 <Quadrado>
+                 <img src={check} alt={check}/>
+                 </Quadrado>
+                 {done}
+                 </TarefaCriada>
+                 </ContainerTarefa>
+                )
 
-        <ContainerTarefa>
-        <TarefaCriada>
-        <Textos>
-        <h1>Ler 1 capítulo de livro</h1>
-        <h2>Sequência atual: 3 dias <br />Seu recorde: 5 dias</h2>
-        </Textos>
-        <Quadrado>
-        <img src={check} alt={check}/>
-        </Quadrado>
-        </TarefaCriada>
-        </ContainerTarefa>
 
-        <ContainerTarefa>
-        <TarefaCriada>
-        <Textos>
-        <h1>Ler 1 capítulo de livro</h1>
-        <h2>Sequência atual: 3 dias <br />Seu recorde: 5 dias</h2>
-        </Textos>
-        <Quadrado>
-        <img src={check} alt={check}/>
-        </Quadrado>
-        </TarefaCriada>
-        </ContainerTarefa>
 
-        <ContainerTarefa>
-        <TarefaCriada>
-        <Textos>
-        <h1>Ler 1 capítulo de livro</h1>
-        <h2>Sequência atual: 3 dias <br />Seu recorde: 5 dias</h2>
-        </Textos>
-        <Quadrado>
-        <img src={check} alt={check}/>
-        </Quadrado>
-        </TarefaCriada>
-        </ContainerTarefa>
+
+            })}
+       
+       
+      
         
        
-
-
-
 
         </Principal>
         <ContainerLow>
@@ -89,8 +95,8 @@ export default function Hoje ({fotoPerfil}) {
             </Link>
             <Link data-test="today-link" to="/hoje">
            <Div>
-            <img src={bolinha} alt={bolinha}/>
-            <Day>Hoje</Day>
+            <img onClick={hoje} src={bolinha} alt={bolinha}/>
+            <Day onClick={hoje}>Hoje</Day>
             </Div>
            </Link>
             
@@ -225,7 +231,7 @@ const Meus = styled.div `
 `
 
 const TarefaCriada = styled.div`
-    background-color: #FFFFFF;
+    background-color:#FFFFFF;
     width: 340px;
     height: 94px;
     border-radius: 5px;
@@ -258,7 +264,6 @@ const ContainerTarefa = styled.div`
     justify-content: center;
     align-items: center;
     margin-top: 10px;
-    display: none;
 `
 
 const Quadrado = styled.div`
@@ -266,7 +271,7 @@ const Quadrado = styled.div`
     width: 69px;
     height: 69px;
     margin-top: 13px;
-    margin-left: 35px;
+    margin-left: 100px;
     border: 1px solid #E7E7E7;
     border-radius: 5px;
     display: flex;
