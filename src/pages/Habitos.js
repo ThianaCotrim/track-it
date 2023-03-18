@@ -28,7 +28,7 @@ export default function Habitos ({fotoPerfil, tokem}) {
     const [cadastrar, setCadastrar] = useState("display: none")
     const [selecionado, setSelecionado] = useState([])
     const [mostrarTarefas, setMostrarTarefas] = useState([])
-    const [disable, setDisable] = useState(false)
+    const [disabled, setDisabled] = useState(false)
     
 
     function cadastrarTarefa () {
@@ -63,7 +63,7 @@ export default function Habitos ({fotoPerfil, tokem}) {
     function cadastrarHabito (e) {
         e.preventDefault()
 
-
+        setDisabled(true)
         const config = {headers: { Authorization: `Bearer ${tokem}`}}
    
         const body = {name, days: selecionado}
@@ -71,9 +71,8 @@ export default function Habitos ({fotoPerfil, tokem}) {
         const url = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits"
         const promise = axios.post(url, body, config)
        
-        promise.then(res => (setCadastrar("display:none")) (console.log(res.data)) (setDisable(disable)))
-        promise.catch(err => alert(err.response.data.message) (setDisable(disable)))
-        setDisable(disable)
+        promise.then(res => (setCadastrar("display:none")) (console.log(res.data)) (setDisabled(false)))
+        promise.catch(err => alert(err.response.data.message) (setDisabled(false)))
         setName([])
         setSelecionado([])
     }
@@ -122,7 +121,7 @@ export default function Habitos ({fotoPerfil, tokem}) {
         <Meus>
         Meus Hábitos
         </Meus>
-            <Quadrado disabled={disable} data-test="habit-create-btn" onClick={cadastrarTarefa}>
+            <Quadrado disabled={disabled} data-test="habit-create-btn" onClick={cadastrarTarefa}>
                 <p>+</p>
             </Quadrado>
         </Cima>
@@ -130,7 +129,7 @@ export default function Habitos ({fotoPerfil, tokem}) {
         <Informacoes data-test="habit-create-container" cadastrar={cadastrar}>
             <form>
             < Nome>
-                 <input data-test="habit-name-input" disabled={disable} value={name} onChange={e => setName(e.target.value)} type="text" placeholder="nome do hábito"/>
+                 <input data-test="habit-name-input" disabled={disabled} value={name} onChange={e => setName(e.target.value)} type="text" placeholder="nome do hábito"/>
             </Nome>
             <ContainerDias >
             {dias.map(({id, dia}) => {
@@ -144,17 +143,17 @@ export default function Habitos ({fotoPerfil, tokem}) {
                     select = {selecionado.includes(id)}
                     onClick = {() => selecionar(id)}
                     type = "button" 
-                    disabled={disable}>
+                    disabled={disabled}>
                         {dia}
                     </Days>
                 )
             })}
             </ContainerDias>
                         <CancelarESalvar>
-                <Cancelar disabled={disable} data-test="habit-create-cancel-btn" onClick={cancelar}>
+                <Cancelar disabled={disabled} data-test="habit-create-cancel-btn" onClick={cancelar}>
                     Cancelar
                 </Cancelar>
-                <Salvar disabled={disable} data-test="habit-create-save-btn" onClick={cadastrarHabito}>
+                <Salvar disabled={disabled} data-test="habit-create-save-btn" onClick={cadastrarHabito}>
                     <p>Salvar</p>
                 </Salvar>
             </CancelarESalvar>
