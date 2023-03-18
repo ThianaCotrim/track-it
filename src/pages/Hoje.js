@@ -6,17 +6,17 @@ import check from "../images/check.png"
 import { Link } from "react-router-dom"
 import { useEffect, useState } from "react"
 import axios from "axios"
-
+import dayjs from 'dayjs';
+import 'dayjs/locale/pt-br';
 
 export default function Hoje ({fotoPerfil, tokem}) {
 
     const [mostrarHoje, setMostrarHoje] = useState([])
     const [chec, setChec] = useState([])
-
-    function hoje () {
-        
-        
-    }
+    dayjs.locale('pt-br');
+    const biblioteca = dayjs();
+    const formato = biblioteca.format('DD/MM');
+    const diaSemana = biblioteca.format('dddd')
 
     useEffect(() => {
         const config = {headers: { Authorization: `Bearer ${tokem}`}}
@@ -37,7 +37,6 @@ export default function Hoje ({fotoPerfil, tokem}) {
     
     return (
         <Container>
-
         <ContainerTopo>
          <NavBar data-test="header">
          <Link to="/">
@@ -46,15 +45,14 @@ export default function Hoje ({fotoPerfil, tokem}) {
             <Imagem>
             <img src={fotoPerfil} alt={perfil}/>
             </Imagem>
-             
          </NavBar>
         </ContainerTopo>
         
          <Principal>
          < Cima>
-        <Meus>
+        <Meus data-test="today">
         <p>
-        Segunda, 17/05
+        {diaSemana}, {formato}
         </p>
         </Meus>
         <h1>
@@ -63,7 +61,7 @@ export default function Hoje ({fotoPerfil, tokem}) {
         </Cima>
             {mostrarHoje.map(({id, name, done, currentSequence, highestSequence}) => {
                 return (
-                    <ContainerTarefa>
+                    <ContainerTarefa data-test="today-habit-container">
                     <TarefaCriada key={id}>
                  <Textos>
                  <h1>{name}</h1>
@@ -87,12 +85,10 @@ export default function Hoje ({fotoPerfil, tokem}) {
             </Link>
             <Link data-test="today-link" to="/hoje">
            <Div>
-            <img onClick={hoje} src={bolinha} alt={bolinha}/>
-            <Day onClick={hoje}>Hoje</Day>
+            <img src={bolinha} alt={bolinha}/>
+            <Day>Hoje</Day>
             </Div>
            </Link>
-            
-            
            <Link data-test="history-link" to="/historico" style={{ textDecoration: 'none' }}>
             <Historic>
                 Histórico

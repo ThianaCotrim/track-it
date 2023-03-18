@@ -115,7 +115,7 @@ export default function Habitos ({fotoPerfil, tokem}) {
         <Meus>
         Meus Hábitos
         </Meus>
-            <Quadrado onClick={cadastrarTarefa}>
+            <Quadrado data-test="habit-create-btn" onClick={cadastrarTarefa}>
                 <p>+</p>
             </Quadrado>
         </Cima>
@@ -123,12 +123,13 @@ export default function Habitos ({fotoPerfil, tokem}) {
         <Informacoes cadastrar={cadastrar}>
             <form>
             < Nome>
-                 <input disabled={disable} value={name} onChange={e => setName(e.target.value)} type="text" placeholder="nome do hábito"/>
+                 <input data-test="habit-name-input" disabled={disable} value={name} onChange={e => setName(e.target.value)} type="text" placeholder="nome do hábito"/>
             </Nome>
-            <ContainerDias>
+            <ContainerDias data-test="habit-create-container">
             {dias.map(({id, dia}) => {
                 return (
                    <Days
+                   data-test="habit-day"
                    value={days}
                    onChange={e => setDays(e.target.value)}
                     key={id}
@@ -143,10 +144,10 @@ export default function Habitos ({fotoPerfil, tokem}) {
             })}
             </ContainerDias>
                         <CancelarESalvar>
-                <Cancelar onClick={cancelar}>
+                <Cancelar data-test="habit-create-cancel-btn" onClick={cancelar}>
                     Cancelar
                 </Cancelar>
-                <Salvar onClick={cadastrarHabito}>
+                <Salvar data-test="habit-create-save-btn" onClick={cadastrarHabito}>
                     <p>Salvar</p>
                 </Salvar>
             </CancelarESalvar>
@@ -156,15 +157,15 @@ export default function Habitos ({fotoPerfil, tokem}) {
             {mostrarTarefas.length > 0 ? 
             <>
              {mostrarTarefas.map(({id, name, days}) => (
-                <Tarefas>
+                <Tarefas data-test="habit-container">
             <Total>
-            <p>
+            <p data-test="habit-name">
                 {name}
             </p>
             <AgoraVai>
             {dias.map(({id ,dia}) => {
                 return (
-                     <Dentro marcar = {days.includes(id)}>
+                     <Dentro data-test="habit-day" marcar = {days.includes(id)}>
                           {dia}             
                       </Dentro>
                     )
@@ -172,7 +173,7 @@ export default function Habitos ({fotoPerfil, tokem}) {
                </AgoraVai>
               
                </Total>
-            <img onClick={() => deletar(id)} src={lixeirinha} alt={lixeirinha}/>
+            <img data-test="habit-delete-btn" onClick={() => deletar(id)} src={lixeirinha} alt={lixeirinha}/>
             </Tarefas>  
                 ))}
                 </>
