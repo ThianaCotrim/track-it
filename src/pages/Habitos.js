@@ -33,7 +33,6 @@ export default function Habitos ({fotoPerfil, tokem}) {
 
     function cadastrarTarefa () {
         setCadastrar("")
-        
     }
 
     function selecionar (d) {
@@ -46,7 +45,6 @@ export default function Habitos ({fotoPerfil, tokem}) {
 
     useEffect(() => {
 
-        // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODIzNiwiaWF0IjoxNjc5MDczMTU4fQ.8nJXRwyfcSP4At5kkFZqOWkl2bHeyA2RzdNGccApFKs"
         const config = {headers: { Authorization: `Bearer ${tokem}`}}
         const URL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits"
 
@@ -65,7 +63,6 @@ export default function Habitos ({fotoPerfil, tokem}) {
         e.preventDefault()
 
 
-        // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODIzNiwiaWF0IjoxNjc5MDczMTU4fQ.8nJXRwyfcSP4At5kkFZqOWkl2bHeyA2RzdNGccApFKs"
         const config = {headers: { Authorization: `Bearer ${tokem}`}}
    
         const body = {name, days: selecionado}
@@ -83,7 +80,6 @@ export default function Habitos ({fotoPerfil, tokem}) {
     function deletar (id) {
         
 
-        // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODIzNiwiaWF0IjoxNjc5MDczMTU4fQ.8nJXRwyfcSP4At5kkFZqOWkl2bHeyA2RzdNGccApFKs"
         const config = {headers: { Authorization: `Bearer ${tokem}`}}
 
         const Url = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`
@@ -156,35 +152,41 @@ export default function Habitos ({fotoPerfil, tokem}) {
             </form>
         </Informacoes>
       
-            
+            {mostrarTarefas.length > 0 ? 
+            <>
+             {mostrarTarefas.map(({id, name, days}) => (
+                <Tarefas>
+            <Total>
+            <p>
+                {name}
+            </p>
+            <AgoraVai>
+            {dias.map(({dia}) => {
+                return (
+                     <Dentro>
+                          {dia}
+                         
+                      </Dentro>
+                    )
+                })}
+               </AgoraVai>
+              
+               </Total>
+            <img onClick={() => deletar(id)} src={lixeirinha} alt={lixeirinha}/>
+            </Tarefas>  
+                ))}
+                </>
+                 :
+                 <Texto>
+                 Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!
+                 </Texto>
+        
+        
+        }
 
-            {mostrarTarefas.map(({id, name, days}) => (
-            <Tarefas>
-        <Total>
-        <p>
-            {name}
-        </p>
-        <AgoraVai>
-        {dias.map(({dia}) => {
-            return (
-                 <Dentro>
-                      {dia}
-                     
-                  </Dentro>
-                 
-                )
-            })}
-           </AgoraVai>
-          
-           </Total>
-        <img onClick={() => deletar(id)} src={lixeirinha} alt={lixeirinha}/>
-        </Tarefas>  
-            ))}
+           
 
-        <Texto>
-            
-        Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!
-        </Texto>
+      
 
        </Principal>
 
