@@ -29,7 +29,10 @@ export default function Login ({setFotoPerfil, setTokem}) {
         
         
 
-        promise.then(res => navigate("/hoje") (setTokem(res.data.token)))
+        promise.then((res) => {
+            navigate("/hoje") 
+            setTokem(res.data.token)
+            setFotoPerfil(res.data.image)})
       
         promise.catch(err => alert(err.response.data.message)  (setDisable(disable)))
         setDisable(!disable)

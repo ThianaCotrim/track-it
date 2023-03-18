@@ -204,5 +204,4 @@ const Imagem = styled.div`
     border-radius: 98.5px;
     width: 51px;
     height: 51px;
- }
- `
+ }`
