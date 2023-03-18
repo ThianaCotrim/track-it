@@ -11,9 +11,11 @@ import axios from "axios"
 export default function Hoje ({fotoPerfil, tokem}) {
 
     const [mostrarHoje, setMostrarHoje] = useState([])
+    const [chec, setChec] = useState([])
 
     function hoje () {
-        alert('oi')
+        
+        
     }
 
     useEffect(() => {
@@ -23,10 +25,16 @@ export default function Hoje ({fotoPerfil, tokem}) {
         const promise = axios.get(URL, config)
         promise.then(res => (setMostrarHoje(res.data)))
         promise.catch(err => console.log(err.response.data))
+    }, [])
 
-
-    })
-
+    function feito (d) {
+        if (!chec.includes(d)){
+            setChec([...chec, d])
+          } else {
+            setChec(chec.filter(a => a !== d))
+          }
+        }
+    
     return (
         <Container>
 
@@ -53,38 +61,22 @@ export default function Hoje ({fotoPerfil, tokem}) {
         Nenhum hábito concluído ainda
         </h1>
         </Cima>
-
-
-
-        
-        
-        
             {mostrarHoje.map(({id, name, done, currentSequence, highestSequence}) => {
                 return (
                     <ContainerTarefa>
-                    <TarefaCriada>
+                    <TarefaCriada key={id}>
                  <Textos>
                  <h1>{name}</h1>
                  <h2>Sequência atual: 3 dias <br />Seu recorde: 5 dias</h2>
                  </Textos>
-                 <Quadrado>
+                 <Quadrado mudar={chec.includes(id)} onClick={() => feito(id)}>
                  <img src={check} alt={check}/>
                  </Quadrado>
                  {done}
                  </TarefaCriada>
                  </ContainerTarefa>
                 )
-
-
-
-
             })}
-       
-       
-      
-        
-       
-
         </Principal>
         <ContainerLow>
          <Low data-test="menu">
@@ -267,7 +259,7 @@ const ContainerTarefa = styled.div`
 `
 
 const Quadrado = styled.div`
-    background-color: #EBEBEB;
+    background-color:  ${({mudar}) => mudar ? "#8FC549" : "#EBEBEB"};
     width: 69px;
     height: 69px;
     margin-top: 13px;
