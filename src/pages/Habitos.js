@@ -120,12 +120,12 @@ export default function Habitos ({fotoPerfil, tokem}) {
             </Quadrado>
         </Cima>
 
-        <Informacoes cadastrar={cadastrar}>
+        <Informacoes data-test="habit-create-container" cadastrar={cadastrar}>
             <form>
             < Nome>
                  <input data-test="habit-name-input" disabled={disable} value={name} onChange={e => setName(e.target.value)} type="text" placeholder="nome do hábito"/>
             </Nome>
-            <ContainerDias data-test="habit-create-container">
+            <ContainerDias >
             {dias.map(({id, dia}) => {
                 return (
                    <Days
