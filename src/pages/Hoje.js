@@ -47,17 +47,15 @@ export default function Hoje({ fotoPerfil, tokem }) {
             setChec(chec.filter(a => a !== d))
            
             const config = { headers: { Authorization: `Bearer ${tokem}` } }
-            const Url = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${d}/uncheck`
+            const url = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${d}/uncheck`
             const body = {}
 
-            const promice = axios.post(Url, body, config)
+            const promice = axios.post(url, body, config)
 
             promice.then(res => (console.log(res.data)))
             promice.catch(err => (console.log(err.response.data)))  
         }
         }
-        
-
 
     let totalDeHabitos = mostrarHoje.length;
     let habitosConcluidos = chec.length;
@@ -84,8 +82,8 @@ export default function Hoje({ fotoPerfil, tokem }) {
                     {clicou === false ?
                         <h1>Nenhum hábito concluído ainda</h1>
                         :
-                        <Testando data-test="today-counter">
-                            <h2>{porcentagem} dos hábitos concluídos</h2>
+                        <Testando>
+                            <h2 data-test="today-counter" >{porcentagem} dos hábitos concluídos</h2>
                         </Testando>
                     }
 
@@ -98,8 +96,8 @@ export default function Hoje({ fotoPerfil, tokem }) {
                                     <h1 key={id} data-test="today-habit-name" >{name}</h1>
                                     <h2>Sequência atual: 3 dias <br/> Seu recorde: 5 dias </h2>
                                 </Textos>
-                                <Quadrado data-test="today-habit-check-btn" clicou={clicou} mudar={chec.includes(id)} onClick={() => feito(id)}>
-                                    <img src={check} alt={check} />
+                                <Quadrado clicou={clicou} mudar={chec.includes(id)} onClick={() => feito(id)} data-test="today-habit-check-btn">
+                                    <img data-test="today-habit-check-btn" src={check} alt={check} />
                                 </Quadrado>
                                 {done}
                             </TarefaCriada>
