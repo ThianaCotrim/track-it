@@ -30,9 +30,8 @@ export default function Hoje({ fotoPerfil, tokem }) {
 
     function feito(d) {
         if (!chec.includes(d)) {
-            setChec([...chec, d])
-            setClicou(true)
-            
+           
+           
 
             const config = { headers: { Authorization: `Bearer ${tokem}` } }
             const url = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${d}/check`
@@ -42,9 +41,11 @@ export default function Hoje({ fotoPerfil, tokem }) {
 
             promisse.then(res => console.log(res.data))
             promisse.catch(err => console.log(err.response.data))
+            setChec([...chec, d])
+            setClicou(true)
             
         } else {
-            setChec(chec.filter(a => a !== d))
+            
            
             const config = { headers: { Authorization: `Bearer ${tokem}` } }
             const url = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${d}/uncheck`
@@ -54,6 +55,9 @@ export default function Hoje({ fotoPerfil, tokem }) {
 
             promice.then(res => (console.log(res.data)))
             promice.catch(err => (console.log(err.response.data)))  
+            setChec(chec.filter(a => a !== d))
+
+            
         }
         }
 
@@ -96,8 +100,8 @@ export default function Hoje({ fotoPerfil, tokem }) {
                                     <h1 key={id} data-test="today-habit-name" >{name}</h1>
                                     <h2>Sequência atual: 3 dias <br/> Seu recorde: 5 dias </h2>
                                 </Textos>
-                                <Quadrado clicou={clicou} mudar={chec.includes(id)} onClick={() => feito(id)} data-test="today-habit-check-btn">
-                                    <img data-test="today-habit-check-btn" src={check} alt={check} />
+                                <Quadrado data-test="today-habit-check-btn" clicou={clicou} mudar={chec.includes(id)} onClick={() => feito(id)}>
+                                    <img src={check} alt={check} />
                                 </Quadrado>
                                 {done}
                             </TarefaCriada>
