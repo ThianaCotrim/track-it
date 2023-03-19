@@ -5,41 +5,27 @@ import bolinha from "../images/bolinha.png"
 import { Link } from "react-router-dom"
 
 export default function Historico ({fotoPerfil}) {
+    
     return (
         <Container>
-
         <ContainerTopo>
          <NavBar data-test="header">
          <Link to="/">
             <img src={trackit} alt={trackit}/>
             </Link>
-            <Imagem>
-            <img src={fotoPerfil} alt={perfil}/>
-            </Imagem>
+            <Imagem><img src={fotoPerfil} alt={perfil}/></Imagem>
          </NavBar>
         </ContainerTopo>
-        
          <Principal>
          < Cima>
-        <Meus>
-        Histórico
-        </Meus>
+        <Meus>Histórico</Meus>
         </Cima>
-        <Texto>
-        Em breve você poderá ver o histórico dos seus hábitos aqui!
-        </Texto>
-
-
-
-
+        <Texto>Em breve você poderá ver o histórico dos seus hábitos aqui!</Texto>
         </Principal>
-
         <ContainerLow>
          <Low data-test="menu">
          <Link to="/habitos" data-test="habit-link" style={{ textDecoration: 'none' }}>
-            <Habits>
-                Hábitos
-            </Habits>
+            <Habits>Hábitos</Habits>
             </Link>
             <Link data-test="today-link" to="/hoje">
            <Div>
@@ -47,12 +33,8 @@ export default function Historico ({fotoPerfil}) {
             <Day>Hoje</Day>
             </Div>
            </Link>
-            
-            
            <Link data-test="history-link" to="/historico" style={{ textDecoration: 'none' }}>
-            <Historic>
-                Histórico
-            </Historic>
+            <Historic>Histórico</Historic>
             </Link>
          </Low>
         </ContainerLow> 

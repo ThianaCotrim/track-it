@@ -32,6 +32,7 @@ export default function Hoje({ fotoPerfil, tokem }) {
         if (!chec.includes(d)) {
             setChec([...chec, d])
             setClicou(true)
+            console.log(chec)
 
             const confi = { headers: { Authorization: `Bearer ${tokem}` } }
             const url = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${d}/check`
@@ -44,6 +45,7 @@ export default function Hoje({ fotoPerfil, tokem }) {
 
         } else {
             setChec(chec.filter(a => a !== d))
+            console.log(chec)
 
             const config = { headers: { Authorization: `Bearer ${tokem}` } }
             const Url = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${d}/uncheck`
@@ -54,7 +56,7 @@ export default function Hoje({ fotoPerfil, tokem }) {
             promice.then(res => (console.log(res.data)))
             promice.catch(err => (console.log(err.response.data)))
         }
-    }
+        }
 
     let totalDeHabitos = mostrarHoje.length;
     let habitosConcluidos = chec.length;
@@ -76,63 +78,46 @@ export default function Hoje({ fotoPerfil, tokem }) {
             <Principal>
                 < Cima>
                     <Meus data-test="today">
-                        <p>
-                            {diaSemana}, {formato}
-                        </p>
+                        <p>{diaSemana}, {formato}</p>
                     </Meus>
-
                     {clicou === false ?
-
-                        <h1>
-                            Nenhum hábito concluído ainda
-                        </h1>
+                        <h1>Nenhum hábito concluído ainda</h1>
                         :
                         <Testando data-test="today-counter">
-                            <h2>
-                                {porcentagem} dos hábitos concluídos
-                            </h2>
+                            <h2>{porcentagem} dos hábitos concluídos</h2>
                         </Testando>
-
                     }
-
-
-
 
                 </Cima>
                 {mostrarHoje.map(({ id, name, done, currentSequence, highestSequence }) => {
                     return (
-                        <ContainerTarefa data-test="today-habit-container">
+                        <ContainerTarefa key={id} data-test="today-habit-container">
                             <TarefaCriada key={id}>
-                                <Textos data-test="today-habit-name">
-                                    <h1 data-test="today-habit-name" >{name}</h1>
+                                <Textos key={id} data-test="today-habit-name">
+                                    <h1 key={id} data-test="today-habit-name" >{name}</h1>
                                     <h2>Sequência atual: 3 dias <br />Seu recorde: 5 dias</h2>
                                 </Textos>
-                                <Quadrado clicou={clicou} mudar={chec.includes(id)} onClick={() => feito(id)}>
+                                <Quadrado data-test="today-habit-check-btn" clicou={clicou} mudar={chec.includes(id)} onClick={() => feito(id)}>
                                     <img src={check} alt={check} />
                                 </Quadrado>
                                 {done}
                             </TarefaCriada>
                         </ContainerTarefa>
-                    )
+                            )
                 })}
             </Principal>
             <ContainerLow>
                 <Low data-test="menu">
                     <Link data-test="habit-link" to="/habitos" style={{ textDecoration: 'none' }}>
-                        <Habits>
-                            Hábitos
-                        </Habits>
+                        <Habits>Hábitos</Habits>
                     </Link>
                     <Link data-test="today-link" to="/hoje">
-                        <Div>
-                            <img src={bolinha} alt={bolinha} />
-                            <Day>Hoje</Day>
+                        <Div><img src={bolinha} alt={bolinha}/>
+                          <Day>Hoje</Day>
                         </Div>
                     </Link>
                     <Link data-test="history-link" to="/historico" style={{ textDecoration: 'none' }}>
-                        <Historic>
-                            Histórico
-                        </Historic>
+                        <Historic>Histórico</Historic>
                     </Link>
                 </Low>
             </ContainerLow>

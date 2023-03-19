@@ -7,31 +7,26 @@ import Loader from "../components/ThreeDots"
 
 export default function Cadastro () {
 
-
     const [email, setEmail] = useState ([])
     const [password, setPassword] = useState([])
     const [name, setName] = useState ([])
     const [image, setImage] = useState([])
     const [disable, setDisable] = useState(false)
     
-
     const navigate = useNavigate()
 
     function cadastrar (e) {
         e.preventDefault()
 
         const body = {email, password, name, image};
-
         const url = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up"
+
         const promise = axios.post(url, body)
 
         promise.then(res => navigate("/"))
         promise.catch(err => alert(err.response.data.message) (setDisable(disable)))
-        setDisable(!disable)
-        
+        setDisable(!disable) 
     }
-
-
     
 return (
    <Container>
@@ -60,7 +55,6 @@ return (
     Já tem uma conta? Faça login!
     </Texto>
     </Link>
-   
    </Container>
 )
 }
@@ -68,7 +62,6 @@ return (
 const Imagem = styled.div `
     margin-top: 68px;
     margin-bottom: 33px;
-
 `
 
 const Container = styled.div `

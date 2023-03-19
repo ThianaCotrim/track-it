@@ -5,29 +5,22 @@ import fotoprincipal from "../images/group 8.png"
 import axios from "axios"
 import Loader from "../components/ThreeDots"
 
-
-
 export default function Login ({setFotoPerfil, setTokem}) {
 
     const [email, setEmail] = useState ([undefined])
     const [password, setPassword] = useState([undefined])
     const [disable, setDisable] = useState(false)
 
-    
     const navigate = useNavigate()
 
     function entrar (e) {
         
-      
         e.preventDefault()
-        const body = {email, password}
 
+        const body = {email, password}
         const url = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login"
 
         const promise = axios.post(url, body)
-
-        
-        
 
         promise.then((res) => {
             navigate("/hoje") 
@@ -35,11 +28,9 @@ export default function Login ({setFotoPerfil, setTokem}) {
             setFotoPerfil(res.data.image)})
       
         promise.catch(err => alert(err.response.data.message)  (setDisable(disable)))
-        setDisable(!disable)
-        
+        setDisable(!disable) 
     }
-
-        
+    
 return (
    <Container>
     < Imagem>
@@ -52,10 +43,8 @@ return (
     < Senha >
     <input disabled={disable} data-test="password-input" type="password" placeholder="senha" required value={password} onChange={e => setPassword(e.target.value)}/>
     </Senha>
-    
     < Botao >
     <button disabled={disable} data-test="login-btn" type="submit"> {disable ? <Loader /> : "Entrar"} </button>
-    
     </Botao>
     </form>
     <Link data-test="signup-link" to="/cadastro">
@@ -63,11 +52,9 @@ return (
     Não tem uma conta? Cadastre-se!
     </Texto>
     </Link>
-   
    </Container>
 )
 }
-
 
 const Imagem = styled.div `
     margin-top: 68px;
@@ -85,7 +72,6 @@ const Email = styled.div`
     border-radius: 5px;
     padding-left: 5px;
    
-
     ::placeholder {
     font-family: 'Lexend Deca', sans-serif;
     font-weight: 400;
@@ -100,7 +86,6 @@ const Senha = styled.div `
 
     margin-bottom:8px;
     
-
     input {
     width: 303px;
     height: 45px;

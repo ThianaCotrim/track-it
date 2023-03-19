@@ -7,11 +7,8 @@ import { Link } from "react-router-dom"
 import { useEffect, useState } from "react"
 import axios from "axios"
 
-
-
 export default function Habitos ({fotoPerfil, tokem}) {
     
-  
     const [name, setName] = useState([])
     const [days, setDays] = useState([])
 
@@ -30,7 +27,6 @@ export default function Habitos ({fotoPerfil, tokem}) {
     const [mostrarTarefas, setMostrarTarefas] = useState([])
     const [disabled, setDisabled] = useState(false)
     
-
     function cadastrarTarefa () {
         setCadastrar("")
         setDisabled(false)
@@ -50,27 +46,20 @@ export default function Habitos ({fotoPerfil, tokem}) {
         const config = {headers: { Authorization: `Bearer ${tokem}`}}
         const URL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits"
 
-        
         const promisse = axios.get(URL, config )
         
         promisse.then(res => setMostrarTarefas(res.data))
         promisse.catch(err => (console.log(err.response.data)))
-
-       
-
     }, [cadastrarHabito])
-
-
 
     function cadastrarHabito (e) {
         e.preventDefault()
-
         setDisabled(true)
-        const config = {headers: { Authorization: `Bearer ${tokem}`}}
-   
-        const body = {name, days: selecionado}
 
+        const config = {headers: { Authorization: `Bearer ${tokem}`}}
+        const body = {name, days: selecionado}
         const url = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits"
+
         const promise = axios.post(url, body, config)
        
         promise.then(res => (setCadastrar("display:none")) (console.log(res.data)) (setDisabled(false)))
@@ -85,14 +74,13 @@ export default function Habitos ({fotoPerfil, tokem}) {
 
         if (confirmacao) {
         const config = {headers: { Authorization: `Bearer ${tokem}`}}
-
         const Url = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`
+
         const promice = axios.delete(Url, config)
 
         promice.then(res => console.log(res.data))
         promice.catch(err => console.log(err.response.data))
     } else {
-
     }
 } 
 
@@ -100,28 +88,21 @@ export default function Habitos ({fotoPerfil, tokem}) {
         setCadastrar("display:none")
     }
   
-    
-
     return (
         <Container>
-
        <ContainerTopo>
         <NavBar data-test="header">
             <Link to="/">
             <img src={trackit} alt={trackit}/>
             </Link>
             
-            <Imagem>
-            <img src={fotoPerfil} alt={perfil}/>
-            </Imagem>
+            <Imagem><img src={fotoPerfil} alt={perfil}/></Imagem>
         </NavBar>
        </ContainerTopo>
        
         <Principal>
         < Cima>
-        <Meus>
-        Meus Hábitos
-        </Meus>
+        <Meus>Meus Hábitos</Meus>
             <Quadrado disabled={disabled} data-test="habit-create-btn" onClick={cadastrarTarefa}>
                 <p>+</p>
             </Quadrado>
@@ -136,9 +117,9 @@ export default function Habitos ({fotoPerfil, tokem}) {
             {dias.map(({id, dia}) => {
                 return (
                    <Days
-                   data-test="habit-day"
-                   value={days}
-                   onChange={e => setDays(e.target.value)}
+                    data-test="habit-day"
+                    value={days}
+                    onChange={e => setDays(e.target.value)}
                     key={id}
                     id={id}
                     select = {selecionado.includes(id)}
@@ -164,7 +145,7 @@ export default function Habitos ({fotoPerfil, tokem}) {
             {mostrarTarefas.length > 0 ? 
             <>
              {mostrarTarefas.map(({id, name, days}) => (
-                <Tarefas data-test="habit-container">
+                <Tarefas  key={id}data-test="habit-container">
             <Total>
             <p data-test="habit-name">
                 {name}
@@ -172,7 +153,7 @@ export default function Habitos ({fotoPerfil, tokem}) {
             <AgoraVai>
             {dias.map(({id ,dia}) => {
                 return (
-                     <Dentro data-test="habit-day" marcar = {days.includes(id)}>
+                     <Dentro key={id} data-test="habit-day" marcar = {days.includes(id)}>
                           {dia}             
                       </Dentro>
                     )
@@ -188,22 +169,13 @@ export default function Habitos ({fotoPerfil, tokem}) {
                  <Texto>
                  Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!
                  </Texto>
-        
-        
         }
 
-           
-
-      
-
        </Principal>
-
        <ContainerLow>
         <Low data-test="menu">
             <Link to="/habitos" style={{ textDecoration: 'none' }}>
-            <Habits>
-                Hábitos
-            </Habits>
+            <Habits>Hábitos</Habits>
             </Link>
            <Link to="/hoje">
            <Div>
@@ -212,14 +184,11 @@ export default function Habitos ({fotoPerfil, tokem}) {
             </Div>
            </Link>
             <Link to="/historico" style={{ textDecoration: 'none' }}>
-            <Historic>
-                Histórico
-            </Historic>
+            <Historic>Histórico</Historic>
             </Link>
         </Low>
        </ContainerLow> 
        </Container>
-
     )
 }
 
