@@ -30,23 +30,21 @@ export default function Hoje({ fotoPerfil, tokem }) {
 
     function feito(d) {
         if (!chec.includes(d)) {
-           
-           
-
-            const config = { headers: { Authorization: `Bearer ${tokem}` } }
-            const url = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${d}/check`
-            const body = {}
-
-            const promisse = axios.post(url, body, config)
-
-            promisse.then(res => console.log(res.data))
-            promisse.catch(err => console.log(err.response.data))
             setChec([...chec, d])
-            setClicou(true)
-            
-        } else {
-            
+            setClicou(true) 
+
+        const config = { headers: { Authorization: `Bearer ${tokem}` } }
+        const url = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${d}/check`
+        const body = {}
+
+        const promisse = axios.post(url, body, config)
+
+        promisse.then(res => console.log(res.data))
+        promisse.catch(err => console.log(err.response.data))
            
+        } else {
+            setChec(chec.filter(a => a !== d))   
+
             const config = { headers: { Authorization: `Bearer ${tokem}` } }
             const url = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${d}/uncheck`
             const body = {}
@@ -55,7 +53,6 @@ export default function Hoje({ fotoPerfil, tokem }) {
 
             promice.then(res => (console.log(res.data)))
             promice.catch(err => (console.log(err.response.data)))  
-            setChec(chec.filter(a => a !== d))
 
             
         }
@@ -98,7 +95,7 @@ export default function Hoje({ fotoPerfil, tokem }) {
                             <TarefaCriada key={id}>
                                 <Textos key={id}>
                                     <h1 key={id} data-test="today-habit-name" >{name}</h1>
-                                    <h2>Sequência atual: 3 dias <br/> Seu recorde: 5 dias </h2>
+                                    <h2 data-test="today-habit-sequence" >Sequência atual: 3 dias <br/> Seu recorde: 5 dias </h2>
                                 </Textos>
                                 <Quadrado data-test="today-habit-check-btn" clicou={clicou} mudar={chec.includes(id)} onClick={() => feito(id)}>
                                     <img src={check} alt={check} />

@@ -5,7 +5,7 @@ import fotoprincipal from "../images/group 8.png"
 import axios from "axios"
 import Loader from "../components/ThreeDots"
 
-export default function Login ({setFotoPerfil, setTokem}) {
+export default function Login ({setFotoPerfil, fotoPerfil, setTokem}) {
 
     const [email, setEmail] = useState ([undefined])
     const [password, setPassword] = useState([undefined])
