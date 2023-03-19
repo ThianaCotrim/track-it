@@ -20,7 +20,7 @@ export default function Hoje({ fotoPerfil, tokem }) {
     const [clicou, setClicou] = useState(false)
 
     useEffect(() => {
-        const config = { headers: { Authorization: `Bearer ${tokem}` } }
+        const config = { headers: { Authorization: `Bearer ${tokem}` }}
         const URL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today"
 
         const promise = axios.get(URL, config)
@@ -32,21 +32,20 @@ export default function Hoje({ fotoPerfil, tokem }) {
         if (!chec.includes(d)) {
             setChec([...chec, d])
             setClicou(true)
-            console.log(chec)
+            
 
-            const confi = { headers: { Authorization: `Bearer ${tokem}` } }
+            const config = { headers: { Authorization: `Bearer ${tokem}` } }
             const url = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${d}/check`
-            const bodi = {}
+            const body = {}
 
-            const promisse = axios.post(url, bodi, confi)
+            const promisse = axios.post(url, body, config)
 
             promisse.then(res => console.log(res.data))
             promisse.catch(err => console.log(err.response.data))
-
+            
         } else {
             setChec(chec.filter(a => a !== d))
-            console.log(chec)
-
+           
             const config = { headers: { Authorization: `Bearer ${tokem}` } }
             const Url = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${d}/uncheck`
             const body = {}
@@ -54,9 +53,11 @@ export default function Hoje({ fotoPerfil, tokem }) {
             const promice = axios.post(Url, body, config)
 
             promice.then(res => (console.log(res.data)))
-            promice.catch(err => (console.log(err.response.data)))
+            promice.catch(err => (console.log(err.response.data)))  
         }
         }
+        
+
 
     let totalDeHabitos = mostrarHoje.length;
     let habitosConcluidos = chec.length;
@@ -93,9 +94,9 @@ export default function Hoje({ fotoPerfil, tokem }) {
                     return (
                         <ContainerTarefa key={id} data-test="today-habit-container">
                             <TarefaCriada key={id}>
-                                <Textos key={id} data-test="today-habit-name">
+                                <Textos key={id}>
                                     <h1 key={id} data-test="today-habit-name" >{name}</h1>
-                                    <h2>Sequência atual: 3 dias <br />Seu recorde: 5 dias</h2>
+                                    <h2>Sequência atual: 3 dias <br/> Seu recorde: 5 dias </h2>
                                 </Textos>
                                 <Quadrado data-test="today-habit-check-btn" clicou={clicou} mudar={chec.includes(id)} onClick={() => feito(id)}>
                                     <img src={check} alt={check} />
@@ -259,7 +260,6 @@ const TarefaCriada = styled.div`
     border-radius: 5px;
     display: flex;
     
-
     h1 {
     font-family: 'Lexend Deca', sans-serif;
     font-weight: 400;
@@ -267,7 +267,6 @@ const TarefaCriada = styled.div`
     color: #666666;
     margin-left: 10px;
     margin-top: 10px;
-    
     }
 
     h2 {
@@ -279,7 +278,15 @@ const TarefaCriada = styled.div`
     margin-top: 8px;
     line-height:17px;
     }
-`
+
+    h3 {
+    font-family: 'Lexend Deca', sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    color: #666666;
+    margin-left: 10px;
+    line-height:17px;
+    }`
 
 const ContainerTarefa = styled.div`
     display: flex;
