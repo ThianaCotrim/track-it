@@ -53,14 +53,14 @@ export default function Hoje({ fotoPerfil, tokem }) {
 
             promice.then(res => (console.log(res.data)))
             promice.catch(err => (console.log(err.response.data)))  
-
-            
         }
         }
 
     let totalDeHabitos = mostrarHoje.length;
     let habitosConcluidos = chec.length;
     let porcentagem = Number(((habitosConcluidos / totalDeHabitos) * 100).toFixed(2)) + "%";
+
+
 
     return (
         <Container>
@@ -83,8 +83,8 @@ export default function Hoje({ fotoPerfil, tokem }) {
                     {clicou === false ?
                         <h1>Nenhum hábito concluído ainda</h1>
                         :
-                        <Testando>
-                            <h2 data-test="today-counter" >{porcentagem} dos hábitos concluídos</h2>
+                        <Testando data-test="today-counter">
+                            <h2>{porcentagem} dos hábitos concluídos</h2>
                         </Testando>
                     }
 
