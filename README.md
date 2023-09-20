@@ -1,4 +1,4 @@
-<h1>Projeto TrackIt</h1> 📈
+<h1>Projeto TrackIt 📈 </h1> 
 
 Aplicação de acompanhamento de Hábitos. Com este app, você pode criar e acompanhar seus hábitos diários, semanais e mensais. TrackIt permite registrar seus hábitos e monitorar seu progresso de forma rápida e fácil.
 
