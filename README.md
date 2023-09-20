@@ -7,15 +7,15 @@ Pensando na acessibilidade do usuário a aplicação conta com icones e progress
 # Sobre
 O trackIt é uma aplicação em que o usuário pode monitorar seus hábitos de maneira rápida e prática. E além disso pode verificar o seu histórico.
 
-Login
+- Login
 
-Cadastro
+- Cadastro
 
-Hábitos
+- Hábitos
 
-Hoje
+- Hoje
 
-Histórico
+- Histórico
 
 Featuras Futuras :
 - Logout
